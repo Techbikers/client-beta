@@ -1,0 +1,23 @@
+/* Header */
+.header {
+  text-align: left;
+}
+
+.headerDates {
+  text-transform: uppercase;
+}
+
+.headerTitle {
+  & h1 {
+    font-size: 2em;
+  }
+}
+
+.headerChapter {
+
+}
+
+/* Fundraising Total */
+.fundraisingTotal {
+
+}
