@@ -363,7 +363,7 @@ const PaymentUtils = {
     if (!card) {
       return false;
     }
-    return (_ref = num.length, __indexOf.call(card.length, _ref) >= 0) && (card.luhn === false || this.luhnCheck(num));
+    return (_ref = num.length, card.length.indexOf(_ref) >= 0) && (card.luhn === false || this.luhnCheck(num));
   },
 
   validateCardExpiry(month, year) {
@@ -400,20 +400,6 @@ const PaymentUtils = {
     expiry.setMonth(expiry.getMonth() - 1);
     expiry.setMonth(expiry.getMonth() + 1, 1);
     return expiry > currentTime;
-  },
-
-  validateCardCVC(cvc, type) {
-    var card, _ref;
-    cvc = $.trim(cvc);
-    if (!/^\d+$/.test(cvc)) {
-      return false;
-    }
-    card = cardFromType(type);
-    if (card != null) {
-      return _ref = cvc.length, __indexOf.call(card.cvcLength, _ref) >= 0;
-    } else {
-      return cvc.length >= 3 && cvc.length <= 4;
-    }
   },
 
   // METHODS TO GET FORMATTED VALUES

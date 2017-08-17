@@ -48,8 +48,8 @@ export default function configureStore(initialState = {}, sagas = []) {
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
-    module.hot.accept("techbikers/reducers", () => {
-      store.replaceReducer(require("techbikers/reducers").default);
+    module.hot.accept("./reducers", () => {
+      store.replaceReducer(require("./reducers").default);
     });
   }
 

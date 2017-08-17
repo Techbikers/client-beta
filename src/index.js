@@ -49,7 +49,7 @@ function renderApp() {
     <Provider store={store}>
       <Router history={history} children={routes} />
     </Provider>,
-    document.getElementById("app")
+    document.getElementById("root")
   );
 }
 
