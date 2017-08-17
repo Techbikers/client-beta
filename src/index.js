@@ -5,6 +5,10 @@ import { Provider } from "react-redux";
 import { Router, browserHistory } from "react-router";
 import { syncHistoryWithStore } from "react-router-redux";
 
+// Import the base styling (all other styling is on a component level)
+import "normalize.css";
+import "./base.css";
+
 import routes from "./routes";
 import configureStore from "./store";
 import { init } from "app/actions";

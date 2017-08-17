@@ -26,7 +26,7 @@
     "lodash": "4.14.2",
     "moment": "2.14.1",
     "newforms": "0.13.2",
-    "normalize.css": "6.0.0",
+    "normalize.css": "^7.0.0",
     "normalizr": "^3.2.2",
     "polished": "^1.0.4",
     "raven-js": "3.4.0",

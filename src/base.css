@@ -1,0 +1,44 @@
+html {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 87.5%;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 100%
+  }
+}
+
+@media (min-width: 1200px) {
+  html {
+    font-size: 112.5%
+  }
+}
+
+@media print {
+  html{
+    font-size: 80%;
+  }
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  font-family: "Lato", sans-serif;
+}
+
+img {
+  max-width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Raleway', sans-serif;
+}
