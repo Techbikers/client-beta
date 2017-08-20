@@ -2,7 +2,7 @@ import React, { PropTypes } from "react";
 import styled from "styled-components";
 
 import Notification from "notifications/components/Notification";
-import { brandColor } from "utils/style-variables";
+import { primaryColor } from "utils/style-variables";
 
 const Root = styled(Notification)`
   background: #333;
@@ -20,7 +20,7 @@ const InnerProgressBar = styled.div`
   height: 100%;
   min-width: 1em;
   border-radius: 0.5em;
-  background: ${brandColor};
+  background: ${primaryColor};
   width: ${props => `${props.progress}%`}
 `;
 
