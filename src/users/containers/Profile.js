@@ -14,7 +14,7 @@ import Avatar from "users/components/Avatar";
 import UserRidesList from "users/containers/UserRidesList";
 import TwitterLink from "components/TwitterLink";
 import Spinner from "components/Spinner";
-import Content from "app/components/Content";
+import Wrapper from "app/components/Wrapper";
 
 const Toolbar = styled.section`
   background: ${yellow};
@@ -112,10 +112,10 @@ class RiderProfile extends Component {
           </section>
 
           <Rides>
-            <Content>
+            <Wrapper>
               <RidesHeader>{user.firstName}'s rides:</RidesHeader>
               <UserRidesList userId={user.id} />
-            </Content>
+            </Wrapper>
           </Rides>
         </div>
       </DocumentTitle>

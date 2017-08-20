@@ -1,4 +1,5 @@
 import React, { PropTypes } from "react";
+import styled from "styled-components";
 import { IntlProvider } from "react-intl";
 
 import { SEGMENT_TRACKING_KEY } from "config";
@@ -10,9 +11,16 @@ import Footer from "app/components/Footer";
 import MetaTags from "app/components/MetaTags";
 import NotificationArea from "notifications/containers/NotificationArea";
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+`;
+
 const App = ({ children, pageMeta, modalChildren }) => (
   <IntlProvider locale="en">
-    <div>
+    <Container>
       <AnalyticsLoader segmentKey={SEGMENT_TRACKING_KEY} />
       <MetaTags {...pageMeta} />
       <Header />
@@ -22,7 +30,7 @@ const App = ({ children, pageMeta, modalChildren }) => (
       <Modal isOpen={modalChildren !== null}>
         {modalChildren}
       </Modal>
-    </div>
+    </Container>
   </IntlProvider>
 );
 

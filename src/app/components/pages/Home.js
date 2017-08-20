@@ -3,7 +3,7 @@ import DocumentTitle from "react-document-title";
 import styled from "styled-components";
 
 import MailchimpForm from "components/MailchimpForm";
-import Content from "app/components/Content";
+import Wrapper from "app/components/Wrapper";
 
 const CoverImage = styled.div`
   background-image: url("/static/img/background.jpg");
@@ -77,7 +77,7 @@ const IndexPage = () => (
         </Strapline>
       </CoverImage>
 
-      <Content>
+      <Wrapper>
         <section id="mission">
           <header>
             <h1>Our Mission</h1>
@@ -99,7 +99,7 @@ const IndexPage = () => (
         </Stats>
 
         <MailchimpForm />
-      </Content>
+      </Wrapper>
     </div>
   </DocumentTitle>
 );

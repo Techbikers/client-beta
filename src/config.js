@@ -1,4 +1,4 @@
-export const API_ROOT = "/api";
+export const API_ROOT = "https://techbikers.com/api";
 export const AUTH0_CLIENT_ID = "CZuJ8UsHJfF4Xbz4gukAVXC8YlQ2knUC";
 export const AUTH0_DOMAIN = "techbikers.eu.auth0.com";
 export const SEGMENT_TRACKING_KEY = "URQvrM6okB7zRxfTdU6B7apD1Rrl7X5j";
