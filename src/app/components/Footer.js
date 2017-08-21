@@ -1,13 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-import AuthMenu from "auth/containers/AuthMenu";
+import { grey6 } from "utils/style-variables";
 
-const FooterBlock = styled.footer`
-  background-color: #392C3A;
-  margin-top: 52px;
-  padding: 130px 0;
-  color: #F5EFEA;
+import AuthMenu from "auth/containers/AuthMenu";
+import Wrapper from "components/layout/Wrapper";
+
+const Container = styled.footer`
+  padding: 4em 0;
+  color: white;
+  background: ${grey6};
 `;
 
 const Link = styled.a`
@@ -26,8 +28,8 @@ const SocialLinks = styled.p`
 `;
 
 const Footer = () => (
-  <FooterBlock>
-    <div className="content">
+  <Container>
+    <Wrapper>
       <FirstRow>
         <div>
           <Link href="mailto:hello@techbikers.com">hello@techbikers.com</Link>
@@ -48,8 +50,8 @@ const Footer = () => (
           Twitter
         </Link>
       </SocialLinks>
-    </div>
-  </FooterBlock>
+    </Wrapper>
+  </Container>
 );
 
 export default Footer;

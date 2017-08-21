@@ -1,107 +1,165 @@
 import React from "react";
-import DocumentTitle from "react-document-title";
 import styled from "styled-components";
+import { rgba } from "polished";
 
+import HeroUrl from "assets/hero.jpg";
+import SamUrl from "assets/sam.jpg";
+import ParisUrl from "assets/paris.jpg";
+import CyclingUrl from "assets/cycling.jpg";
+
+import { green, blue, purple, grey1 } from "utils/style-variables";
+
+import Card from "components/Card";
 import MailchimpForm from "components/MailchimpForm";
-import Wrapper from "app/components/Wrapper";
+import Wrapper from "components/layout/Wrapper";
 
-const CoverImage = styled.div`
-  background-image: url("/static/img/background.jpg");
-  background-size: cover;
-  padding: 100px 0;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+const Container = styled.div`
+  width: 100%;
+  margin-top: -70px;
+`;
+
+const HeroWrapper = Wrapper.extend`
+  position: relative;
 `;
 
 const Strapline = styled.div`
-  text-shadow: 0px 0px 2px black;
-  text-transform: uppercase;
-  font-weight: bold;
-  text-align: center;
+  flex: 0 0 40%;
+
+  span {
+    display: block;
+    font-weight: 300;
+    font-size: 2.2em;
+  }
+
+  span:nth-child(3) {
+    color: ${green};
+  }
 `;
 
-const Strap1 = styled.div`
-  font-size: 130px;
-  line-height: 1;
+const BlockImage = Card.extend`
+  width: 60%;
+  height: 70vh;
+  background-image: url(${HeroUrl});
+  background-position: center;
+  background-size: cover;
 `;
 
-const Strap2 = styled.div`
-  font-size: 22px;
-  line-height: 1;
+const Wheel = styled.div`
+  position: absolute;
+  right: -50vh;
+  height: 112vh;
+  width: 112vh;
+  background: ${rgba(green, .4)};
+  z-index: -1;
+  border-radius: 50%;
 `;
 
-const StrapAmp = styled.span`
-  display: inline-block;
-  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
-  font-weight: normal;
-  font-style: italic;
-  font-size: 48px;
-  transform: translateY(5px);
+const Mission = styled.div`
+  margin-top: 3em;
+  margin-right: 3em;
+  padding: 4em 0 7em 3em;
+  background: ${grey1};
+
+  p {
+    font-size: 1.2em;
+    font-weight: 200;
+  }
 `;
 
-const Strap3 = styled.div`
-  font-size: 166px;
-  line-height: 1;
+const MissionContents = styled.div`
+  width: 70%;
 `;
 
-const Stats = styled.section`
+const Impact = styled.div`
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: -4em;
+  margin-bottom: 200px;
 `;
 
-const Stat = styled.div`
-  margin-top: 26px;
-  text-align: center;
-  font-size: 80px;
-  font-weight: bold;
-  line-height: 1;
+const Stats = Card.extend`
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2em 1em;
+  width: 70%;
+  background: ${purple};
 `;
 
-const StatSmall = styled.small`
-  display: block;
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+const Title = styled.div`
+  padding: 1em;
+  font-size: 1.2em;
+
+  h1 { margin: .2em 0; }
 `;
+
+const StatContainer = styled.div`
+  display: flex;
+  flex-direction: ${props => props.large ? "row" : "column"};
+  justify-content: center;
+  align-items: center;
+  width: ${props => props.large ? "100%" : "50%"};
+  padding: 2em 1em;
+  color: white;
+
+  div:nth-child(1) {
+    font-size: ${props => props.large ? 4 : 3}em;
+    font-weight: 400;
+  }
+
+  div:nth-child(2) {
+    padding: .3em 1.2em;
+    font-size: 1.2em;
+    width: ${props => props.large ? "230px" : "auto"};
+  }
+`;
+
+const Stat = ({ number, caption, large }) => (
+  <StatContainer large={large}>
+    <div>{number}</div>
+    <div>{caption}</div>
+  </StatContainer>
+);
 
 const IndexPage = () => (
-  <DocumentTitle title="Techbikers">
-    <div>
-      <CoverImage>
-        <Strapline>
-          <Strap1>Drop</Strap1>
-          <Strap2>your laptop <StrapAmp>&</StrapAmp> get on your</Strap2>
-          <Strap3>bike</Strap3>
-        </Strapline>
-      </CoverImage>
-
+  <Container>
+    <HeroWrapper justify="space-between" align="center">
+      <Strapline>
+        <span>Drop your laptop.</span>
+        <span>Get on your bike.</span>
+        <span>Do Good.</span>
+      </Strapline>
+      <BlockImage />
+      <Wheel />
+    </HeroWrapper>
+    <Mission>
       <Wrapper>
-        <section id="mission">
-          <header>
-            <h1>Our Mission</h1>
-          </header>
-
+        <MissionContents>
+          <h1>Our Mission</h1>
           <p>
-            Techbikers is a collaboration of the London tech startup community to help children in need by supporting literacy charity Room to Read. Since 2012 over 300 tech professionals – including start-ups, venture capitalists and executives have cycled 960km in three Paris to London rides to raise money for this fantastic charity.
+            We believe that world change starts with educated children, and you
+            can do one amazing thing to help make that happen.
           </p>
-        </section>
-
-        <Stats>
-          <header>
-            <h1>Stats to Date</h1>
-          </header>
-
-          <Stat>365 <StatSmall>cyclists</StatSmall></Stat>
-          <Stat>£304,000 <StatSmall>raised since 2012</StatSmall></Stat>
-          <Stat>1600km <StatSmall>ridden</StatSmall></Stat>
-        </Stats>
-
-        <MailchimpForm />
+          <p>
+            TechBikers is a collaboration of tech startup communities around the
+            world, transforming the lives of millions of children in developing
+            countries by raising money for literacy and gender equality in education.
+          </p>
+        </MissionContents>
       </Wrapper>
-    </div>
-  </DocumentTitle>
+    </Mission>
+    <Impact>
+      <Stats>
+        <Stat number="400+" caption="Cyclists" />
+        <Stat number="1600km" caption ="Ridden" />
+        <Stat number="$600K" caption ="Raised for Room to Read" large />
+      </Stats>
+      <Title>
+        <h1>Our Impact</h1>
+        Affecting real change around the world.
+      </Title>
+    </Impact>
+  </Container>
 );
 
 export default IndexPage;

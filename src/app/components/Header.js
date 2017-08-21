@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { textColor } from "utils/style-variables";
 
 import LogoURL from "assets/logo@2x.png";
-import Wrapper from "app/components/Wrapper";
+import Wrapper from "components/layout/Wrapper";
 
 const Container = styled.header`
   width: 100%;
@@ -16,7 +16,7 @@ const Navigation = styled.nav`
   display: flex;
   flex: 1 0 auto;
   justify-content: flex-end;
-  font-family: 'Raleway', sans-serif;
+  margin: 1em 0;
 `;
 
 const NavLink = styled(Link)`
@@ -25,7 +25,7 @@ const NavLink = styled(Link)`
   text-decoration: none;
   text-transform: uppercase;
   font-size: .875em;
-  font-weight: bold;
+  font-weight: 400;
   cursor: pointer;
   transition: color .1s linear;
 
@@ -43,13 +43,17 @@ const BlogLink = NavLink.withComponent("a");
 
 const Logo = styled(Link)`
   display: block;
+
+  img {
+    height: 140px;
+  }
 `;
 
 const Header = () => (
   <Container>
     <Wrapper>
       <Logo to="/">
-        <img src={LogoURL} alt="TechBikers" width="125" />
+        <img src={LogoURL} alt="TechBikers" />
       </Logo>
       <Navigation role="navigation">
         <NavLink to="/rides" color="#eb1c24">

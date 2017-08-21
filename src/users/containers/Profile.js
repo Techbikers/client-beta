@@ -14,7 +14,7 @@ import Avatar from "users/components/Avatar";
 import UserRidesList from "users/containers/UserRidesList";
 import TwitterLink from "components/TwitterLink";
 import Spinner from "components/Spinner";
-import Wrapper from "app/components/Wrapper";
+import Wrapper from "components/layout/Wrapper";
 
 const Toolbar = styled.section`
   background: ${yellow};
