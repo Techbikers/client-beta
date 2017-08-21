@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router";
 import styled from "styled-components";
 
@@ -15,12 +16,17 @@ const Navigation = styled.nav`
   display: flex;
   flex: 1 0 auto;
   justify-content: flex-end;
+  font-family: 'Raleway', sans-serif;
 `;
 
 const NavLink = styled(Link)`
   margin-right: 1em;
   color: ${textColor};
   text-decoration: none;
+  text-transform: uppercase;
+  font-size: .875em;
+  font-weight: bold;
+  cursor: pointer;
   transition: color .1s linear;
 
   &:hover {
@@ -40,12 +46,12 @@ const Logo = styled(Link)`
 `;
 
 const Header = () => (
-  <Container role="header">
+  <Container>
     <Wrapper>
       <Logo to="/">
         <img src={LogoURL} alt="TechBikers" width="125" />
       </Logo>
-      <Navigation>
+      <Navigation role="navigation">
         <NavLink to="/rides" color="#eb1c24">
           Rides
         </NavLink>
