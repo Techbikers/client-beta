@@ -18,13 +18,20 @@ const Container = styled.div`
   min-height: 100vh;
 `;
 
+const Content = styled.div`
+  flex: 1 0 auto;
+  width: 100%;
+`;
+
 const App = ({ children, pageMeta, modalChildren }) => (
   <IntlProvider locale="en">
     <Container>
       <AnalyticsLoader segmentKey={SEGMENT_TRACKING_KEY} />
       <MetaTags {...pageMeta} />
       <Header />
-      {children}
+      <Content>
+        {children}
+      </Content>
       <Footer />
       <NotificationArea />
       <Modal isOpen={modalChildren !== null}>

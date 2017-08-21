@@ -6,10 +6,7 @@ import HeroUrl from "assets/hero.jpg";
 import Title from "components/Title";
 import SubTitle from "components/SubTitle";
 import Wrapper from "components/layout/Wrapper";
-
-const Container = styled.div`
-  width: 100%;
-`;
+import Container from "components/layout/Container";
 
 const Banner = styled.div`
   width: 100%;
@@ -74,7 +71,7 @@ const AboutPage = () => (
 
       <p>
         At its core, Techbikers is a multi-day day cycle over several hundred
-        kilometers point-to-point, with up to 70 mixed ability riders – a 
+        kilometers point-to-point, with up to 70 mixed ability riders – a
         challenging but safe experience.
       </p>
 

@@ -12,9 +12,9 @@ import { green, blue, purple, grey1 } from "utils/style-variables";
 import Card from "components/Card";
 import MailchimpForm from "components/MailchimpForm";
 import Wrapper from "components/layout/Wrapper";
+import Container from "components/layout/Container";
 
-const Container = styled.div`
-  width: 100%;
+const HomeContainer = Container.extend`
   margin-top: -70px;
 `;
 
@@ -122,7 +122,7 @@ const Stat = ({ number, caption, large }) => (
 );
 
 const IndexPage = () => (
-  <Container>
+  <HomeContainer>
     <HeroWrapper justify="space-between" align="center">
       <Strapline>
         <span>Drop your laptop.</span>
@@ -159,7 +159,7 @@ const IndexPage = () => (
         Affecting real change around the world.
       </Title>
     </Impact>
-  </Container>
+  </HomeContainer>
 );
 
 export default IndexPage;
