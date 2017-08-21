@@ -1,11 +1,20 @@
 import React from "react";
+import styled from "styled-components";
+
+import Title from "components/Title";
+import SubTitle from "components/SubTitle";
+import Wrapper from "components/layout/Wrapper";
+
+const Container = styled.div`
+  width: 100%;
+`;
 
 const CharityPage = () => (
-  <section>
-    <header>
-      <h1>Techbikers is proud to support <a href="http://www.roomtoread.org" title="Room to Read" target="_blank">Room to Read</a></h1>
-    </header>
-    <div className="content">
+  <Container>
+    <Wrapper column>
+      <Title>Supporting Room to Read</Title>
+      <SubTitle>Because world change starts with educated children</SubTitle>
+
       <p>
         Room to Read believes that World Change Starts with Educated Children. We
         are an international nonprofit transforming the lives of millions of children
@@ -28,8 +37,8 @@ const CharityPage = () => (
         <br/>
         – Kofi Annan, former United Nations Secretary-General
       </blockquote>
-    </div>
-  </section>
+    </Wrapper>
+  </Container>
 );
 
 export default CharityPage;

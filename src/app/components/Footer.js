@@ -1,15 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 
-import { grey6 } from "utils/style-variables";
+import { grey2 } from "utils/style-variables";
 
 import AuthMenu from "auth/containers/AuthMenu";
 import Wrapper from "components/layout/Wrapper";
 
 const Container = styled.footer`
   padding: 4em 0;
-  color: white;
-  background: ${grey6};
+  background: ${grey2};
 `;
 
 const Link = styled.a`
