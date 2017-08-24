@@ -5,6 +5,12 @@ export const yellow       = "#fdec18";
 export const green        = "#76c15a";
 export const purple       = "#625398";
 
+export const redPastel    = "#FB4B54";
+export const bluePastel   = "#5797C1";
+export const yellowPastel = "#FFF46B";
+export const greenPastel  = "#90C67C";
+export const purplePastel = "#8D80B7";
+
 // Greys
 export const grey1        = '#FBFCFD';
 export const grey2        = '#F2F2F7';
