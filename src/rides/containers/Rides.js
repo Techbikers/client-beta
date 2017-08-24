@@ -1,27 +1,21 @@
-import React, { PropTypes, Component } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import DocumentTitle from "react-document-title";
+import styled from "styled-components";
 
 import { fetchAllRides } from "rides/actions";
 import { getUpcomingRides, getPastRides } from "rides/selectors";
 import { RideShape } from "rides/shapes";
 
 import RideCard from "rides/components/RideCard";
+import RidesList from "rides/components/RidesList";
 import Spinner from "components/Spinner";
+import Title from "components/Title";
+import Wrapper from "components/layout/Wrapper";
 
-const RidesList = ({ rides }) => (
-  <ul className="ride-list">
-    {rides.map(ride => (
-      <li key={ride.id}>
-        <RideCard {...ride} />
-      </li>
-    ))}
-  </ul>
-);
-
-RidesList.propTypes = {
-  rides: PropTypes.arrayOf(RideShape)
-};
+const Container = styled.div`
+  width: 100%;
+`;
 
 const mapStateToProps = state => ({
   upcoming: getUpcomingRides(state),
@@ -56,23 +50,15 @@ class Rides extends Component {
     }
 
     return (
-      <DocumentTitle title="Rides – Techbikers">
-        <div className="content">
-          <section id="rides">
-            <header>
-              <h1>Upcoming & Current Rides</h1>
-            </header>
+      <Container>
+        <Wrapper column>
+          <Title>Upcoming & Current Rides</Title>
+          <RidesList rides={upcoming} />
 
-            <RidesList rides={upcoming} />
-
-            <header>
-              <h1>Past Rides</h1>
-            </header>
-
-            <RidesList rides={past} />
-          </section>
-        </div>
-      </DocumentTitle>
+          <Title>Past Rides</Title>
+          <RidesList rides={past} />
+        </Wrapper>
+      </Container>
     );
   }
 }
