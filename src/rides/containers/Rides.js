@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import styled from "styled-components";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import styled from 'styled-components';
 
-import { fetchAllRides } from "rides/actions";
-import { getUpcomingRides, getPastRides } from "rides/selectors";
-import { RideShape } from "rides/shapes";
+import { fetchAllRides } from 'rides/actions';
+import { getUpcomingRides, getPastRides } from 'rides/selectors';
+import { RideShape } from 'rides/shapes';
 
-import RideCard from "rides/components/RideCard";
-import RidesList from "rides/components/RidesList";
-import Spinner from "components/Spinner";
-import Title from "components/Title";
-import Wrapper from "components/layout/Wrapper";
+import RideCard from 'rides/components/RideCard';
+import RidesList from 'rides/components/RidesList';
+import Spinner from 'components/Spinner';
+import Title from 'components/Title';
+import Wrapper from 'components/layout/Wrapper';
 
 const Container = styled.div`
   width: 100%;

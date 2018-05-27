@@ -1,10 +1,10 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-import { grey2 } from "utils/style-variables";
+import { grey2 } from 'utils/style-variables';
 
-import AuthMenu from "auth/containers/AuthMenu";
-import Wrapper from "components/layout/Wrapper";
+import AuthMenu from 'auth/containers/AuthMenu';
+import Wrapper from 'components/layout/Wrapper';
 
 const Container = styled.footer`
   padding: 4em 0;
@@ -12,8 +12,9 @@ const Container = styled.footer`
 `;
 
 const Link = styled.a`
-  &, &:hover {
-    color: #FDEC18;
+  &,
+  &:hover {
+    color: #fdec18;
   }
 `;
 
@@ -41,10 +42,8 @@ const Footer = () => (
       <SocialLinks>
         <Link href="http://www.facebook.com/techbikers" target="_blank">
           Facebook
-        </Link>
-        {" "}
-        ·
-        {" "}
+        </Link>{' '}
+        ·{' '}
         <Link href="http://twitter.com/techbikers" target="_blank">
           Twitter
         </Link>

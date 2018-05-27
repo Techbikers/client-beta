@@ -1,18 +1,18 @@
-import React from "react";
-import styled from "styled-components";
-import { rgba } from "polished";
+import React from 'react';
+import styled from 'styled-components';
+import { rgba } from 'polished';
 
-import HeroUrl from "assets/hero.jpg";
-import SamUrl from "assets/sam.jpg";
-import ParisUrl from "assets/paris.jpg";
-import CyclingUrl from "assets/cycling.jpg";
+import HeroUrl from 'assets/hero.jpg';
+import SamUrl from 'assets/sam.jpg';
+import ParisUrl from 'assets/paris.jpg';
+import CyclingUrl from 'assets/cycling.jpg';
 
-import { green, blue, purple, grey1 } from "utils/style-variables";
+import { green, blue, purple, grey1 } from 'utils/style-variables';
 
-import Card from "components/Card";
-import MailchimpForm from "components/MailchimpForm";
-import Wrapper from "components/layout/Wrapper";
-import Container from "components/layout/Container";
+import Card from 'components/Card';
+import MailchimpForm from 'components/MailchimpForm';
+import Wrapper from 'components/layout/Wrapper';
+import Container from 'components/layout/Container';
 
 const HomeContainer = Container.extend`
   margin-top: -70px;
@@ -49,7 +49,7 @@ const Wheel = styled.div`
   right: -50vh;
   height: 112vh;
   width: 112vh;
-  background: ${rgba(green, .4)};
+  background: ${rgba(green, 0.4)};
   z-index: -1;
   border-radius: 50%;
 `;
@@ -90,27 +90,29 @@ const Title = styled.div`
   padding: 1em;
   font-size: 1.2em;
 
-  h1 { margin: .2em 0; }
+  h1 {
+    margin: 0.2em 0;
+  }
 `;
 
 const StatContainer = styled.div`
   display: flex;
-  flex-direction: ${props => props.large ? "row" : "column"};
+  flex-direction: ${props => (props.large ? 'row' : 'column')};
   justify-content: center;
   align-items: center;
-  width: ${props => props.large ? "100%" : "50%"};
+  width: ${props => (props.large ? '100%' : '50%')};
   padding: 2em 1em;
   color: white;
 
   div:nth-child(1) {
-    font-size: ${props => props.large ? 4 : 3}em;
+    font-size: ${props => (props.large ? 4 : 3)}em;
     font-weight: 400;
   }
 
   div:nth-child(2) {
-    padding: .3em 1.2em;
+    padding: 0.3em 1.2em;
     font-size: 1.2em;
-    width: ${props => props.large ? "230px" : "auto"};
+    width: ${props => (props.large ? '230px' : 'auto')};
   }
 `;
 
@@ -137,13 +139,12 @@ const IndexPage = () => (
         <MissionContents>
           <h1>Our Mission</h1>
           <p>
-            We believe that world change starts with educated children, and you
-            can do one amazing thing to help make that happen.
+            We believe that world change starts with educated children, and you can do one amazing thing to help make
+            that happen.
           </p>
           <p>
-            TechBikers is a collaboration of tech startup communities around the
-            world, transforming the lives of millions of children in developing
-            countries by raising money for literacy and gender equality in education.
+            TechBikers is a collaboration of tech startup communities around the world, transforming the lives of
+            millions of children in developing countries by raising money for literacy and gender equality in education.
           </p>
         </MissionContents>
       </Wrapper>
@@ -151,8 +152,8 @@ const IndexPage = () => (
     <Impact>
       <Stats>
         <Stat number="400+" caption="Cyclists" />
-        <Stat number="1600km" caption ="Ridden" />
-        <Stat number="$600K" caption ="Raised for Room to Read" large />
+        <Stat number="1600km" caption="Ridden" />
+        <Stat number="$600K" caption="Raised for Room to Read" large />
       </Stats>
       <Title>
         <h1>Our Impact</h1>

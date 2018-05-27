@@ -1,29 +1,22 @@
-import React, { PropTypes } from "react";
-import styled from "styled-components";
-import { shade } from "polished";
+import React, { PropTypes } from 'react';
+import styled from 'styled-components';
+import { shade } from 'polished';
 
-import Spinner from "components/Spinner";
-import {
-  altColor,
-  blue,
-  green,
-  grey3,
-  errorColor,
-  warningColor
-} from "utils/style-variables";
+import Spinner from 'components/Spinner';
+import { altColor, blue, green, grey3, errorColor, warningColor } from 'utils/style-variables';
 
-const buttonsKinds = ["standard", "alt", "positive", "warning", "destructive"];
+const buttonsKinds = ['standard', 'alt', 'positive', 'warning', 'destructive'];
 
 const kindToColor = kind => {
-  if (kind === "standard") {
+  if (kind === 'standard') {
     return blue;
-  } else if (kind === "alt") {
+  } else if (kind === 'alt') {
     return altColor;
-  } else if (kind === "positive") {
+  } else if (kind === 'positive') {
     return green;
-  } else if (kind === "warning") {
+  } else if (kind === 'warning') {
     return warningColor;
-  } else if (kind === "destructive") return errorColor;
+  } else if (kind === 'destructive') return errorColor;
 };
 
 const StyledButton = styled.button`
@@ -47,7 +40,7 @@ const StyledButton = styled.button`
   &:active,
   &:focus {
     outline: none;
-    color: #FFFFFF;
+    color: #ffffff;
   }
 
   &:disabled {
@@ -68,11 +61,12 @@ const StyledButton = styled.button`
     padding: 0;
   }
 
-  ${props => props.block ? `
+  ${props =>
+    props.block
+      ? `
     width: 100%;
-  ` : ""}
-
-  ${props => `
+  `
+      : ''} ${props => `
     background-color: ${kindToColor(props.kind)};
 
     &:hover  {
@@ -82,7 +76,7 @@ const StyledButton = styled.button`
     &:active {
       background-color: ${shade(0.8, kindToColor(props.kind))};
     }
-  `}
+  `};
 `;
 
 StyledButton.propTypes = {
@@ -95,37 +89,30 @@ const Contents = styled.div`
   align-items: center;
   padding: 16px 40px;
 
-  ${props => props.loading ? `
+  ${props =>
+    props.loading
+      ? `
     padding: 16px 20px;
-  ` : ""}
+  `
+      : ''};
 `;
 
 Contents.propTypes = {
   loading: PropTypes.bool
 };
 
-const Button = (
-  {
-    disabled = false,
-    loading = false,
-    block = false,
-    kind = "standard",
-    type = "button",
-    children,
-    ...props
-  }
-) => {
+const Button = ({
+  disabled = false,
+  loading = false,
+  block = false,
+  kind = 'standard',
+  type = 'button',
+  children,
+  ...props
+}) => {
   return (
-    <StyledButton
-      disabled={loading || disabled}
-      block={block}
-      type={type}
-      kind={kind}
-      {...props}
-    >
-      <Contents loading={loading}>
-        {loading ? <Spinner light noMargin size={32} /> : children}
-      </Contents>
+    <StyledButton disabled={loading || disabled} block={block} type={type} kind={kind} {...props}>
+      <Contents loading={loading}>{loading ? <Spinner light noMargin size={32} /> : children}</Contents>
     </StyledButton>
   );
 };

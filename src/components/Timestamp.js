@@ -1,7 +1,7 @@
-import moment from "moment";
-import React, { PropTypes } from "react";
+import moment from 'moment';
+import React, { PropTypes } from 'react';
 
-const Timestamp = ({ value, relative = false, format = "YYYY-MM-DDTHH:mm:ssZ", locale, ...props }) => {
+const Timestamp = ({ value, relative = false, format = 'YYYY-MM-DDTHH:mm:ssZ', locale, ...props }) => {
   let humanReadable;
 
   if (!moment.isMoment(value)) {
@@ -13,7 +13,7 @@ const Timestamp = ({ value, relative = false, format = "YYYY-MM-DDTHH:mm:ssZ", l
   }
 
   return (
-    <time dateTime={humanReadable.format("YYYY-MM-DDTHH:mm:ssZ")} {...props}>
+    <time dateTime={humanReadable.format('YYYY-MM-DDTHH:mm:ssZ')} {...props}>
       {relative ? humanReadable.fromNow() : humanReadable.format(format)}
     </time>
   );

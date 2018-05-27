@@ -1,8 +1,8 @@
-import Raven from "raven-js";
+import Raven from 'raven-js';
 
-import { AUTHENTICATION_SUCCESS, LOGOUT } from "auth/actions";
-import { INIT } from "app/actions";
-import { SENTRY_DSN } from "config";
+import { AUTHENTICATION_SUCCESS, LOGOUT } from 'auth/actions';
+import { INIT } from 'app/actions';
+import { SENTRY_DSN } from 'config';
 
 Raven.config(SENTRY_DSN).install();
 
@@ -16,7 +16,7 @@ export default store => next => action => {
 
   switch (action.type) {
     case INIT:
-      if (newState.auth.state === "authenticated") {
+      if (newState.auth.state === 'authenticated') {
         handleAuthentication(newState);
       }
       break;
@@ -31,7 +31,7 @@ export default store => next => action => {
 
     default:
       if (action.error) {
-        Raven.captureMessage(action.payload.message || action.payload, { details: action.payload, level: "info" });
+        Raven.captureMessage(action.payload.message || action.payload, { details: action.payload, level: 'info' });
         break;
       }
   }

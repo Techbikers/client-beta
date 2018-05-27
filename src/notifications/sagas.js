@@ -1,7 +1,7 @@
-import { delay } from "redux-saga";
-import { takeEvery, fork, put } from "redux-saga/effects";
+import { delay } from 'redux-saga';
+import { takeEvery, fork, put } from 'redux-saga/effects';
 
-import * as actions from "notifications/actions";
+import * as actions from 'notifications/actions';
 
 function* createNotification({ payload }) {
   if (payload.timeout) {

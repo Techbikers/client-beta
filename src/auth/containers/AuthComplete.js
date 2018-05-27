@@ -1,10 +1,10 @@
-import React, { Component, PropTypes } from "react";
-import { connect } from "react-redux";
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 
-import { authCallback } from "auth/actions";
+import { authCallback } from 'auth/actions';
 
-import Spinner from "components/Spinner";
-import SpreadBox from "components/SpreadBox";
+import Spinner from 'components/Spinner';
+import SpreadBox from 'components/SpreadBox';
 
 const mapDispatchToProps = {
   authCallback

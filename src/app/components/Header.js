@@ -1,12 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router";
-import styled from "styled-components";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router';
+import styled from 'styled-components';
 
-import { textColor } from "utils/style-variables";
+import { textColor } from 'utils/style-variables';
 
-import LogoURL from "assets/logo@2x.png";
-import Wrapper from "components/layout/Wrapper";
+import LogoURL from 'assets/logo@2x.png';
+import Wrapper from 'components/layout/Wrapper';
 
 const Container = styled.header`
   width: 100%;
@@ -24,14 +24,14 @@ const NavLink = styled(Link)`
   color: ${textColor};
   text-decoration: none;
   text-transform: uppercase;
-  font-size: .875em;
+  font-size: 0.875em;
   font-weight: 400;
   cursor: pointer;
-  transition: color .1s linear;
+  transition: color 0.1s linear;
 
   &:hover {
     text-decoration: none;
-    ${props => (props.color ? `color: ${props.color}` : "")}
+    ${props => (props.color ? `color: ${props.color}` : '')};
   }
 `;
 
@@ -39,7 +39,7 @@ NavLink.propTypes = {
   color: PropTypes.string
 };
 
-const BlogLink = NavLink.withComponent("a");
+const BlogLink = NavLink.withComponent('a');
 
 const Logo = styled(Link)`
   display: block;
@@ -68,13 +68,9 @@ const Header = () => (
           Charity
         </NavLink>
 
-        <BlogLink href="http://blog.techbikers.com/">
-          Blog
-        </BlogLink>
+        <BlogLink href="http://blog.techbikers.com/">Blog</BlogLink>
 
-        <NavLink to="/donate">
-          Donate
-        </NavLink>
+        <NavLink to="/donate">Donate</NavLink>
       </Navigation>
     </Wrapper>
   </Container>

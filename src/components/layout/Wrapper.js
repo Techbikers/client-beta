@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import Container from "components/layout/Container";
+import Container from 'components/layout/Container';
 
 const Wrapper = Container.extend`
   max-width: 1120px;

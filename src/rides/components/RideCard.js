@@ -1,10 +1,10 @@
-import React, { PropTypes } from "react";
-import { Link } from "react-router";
-import styled from "styled-components";
+import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
+import styled from 'styled-components';
 
-import { purplePastel } from "utils/style-variables";
+import { purplePastel } from 'utils/style-variables';
 
-import Timestamp from "components/Timestamp";
+import Timestamp from 'components/Timestamp';
 
 const Card = styled(Link)`
   display: flex;
@@ -19,7 +19,6 @@ const Card = styled(Link)`
   text-decoration: none;
 
   &:hover {
-
   }
 `;
 
@@ -36,11 +35,7 @@ const RideCard = ({ id, name, slug, startDate, endDate }) => (
   <Card to={`/rides/${id}/${slug}`}>
     <Name>{name}</Name>
     <Time>
-      <Timestamp value={startDate} format="D MMM" />
-      {" "}
-      to
-      {" "}
-      <Timestamp value={endDate} format="D MMM YYYY" />
+      <Timestamp value={startDate} format="D MMM" /> to <Timestamp value={endDate} format="D MMM YYYY" />
     </Time>
   </Card>
 );

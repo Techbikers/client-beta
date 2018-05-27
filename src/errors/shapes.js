@@ -1,4 +1,4 @@
-import { PropTypes } from "react";
+import { PropTypes } from 'react';
 
 export const ErrorShape = PropTypes.shape({
   type: PropTypes.string.isRequired,

@@ -1,10 +1,10 @@
-import React, { Component, PropTypes } from "react";
-import forms, { Form } from "newforms";
-import styled from "styled-components";
+import React, { Component, PropTypes } from 'react';
+import forms, { Form } from 'newforms';
+import styled from 'styled-components';
 
-import Button from "components/Button";
-import PaymentUtils from "../utils/paymentUtils";
-import FormField from "./FormField";
+import Button from 'components/Button';
+import PaymentUtils from '../utils/paymentUtils';
+import FormField from './FormField';
 
 const FormComponent = styled.form`
   width: 420px;
@@ -34,7 +34,7 @@ const CardDetails = styled.div`
   height: 200px;
   width: 350px;
   padding: 10px 20px;
-  background: #DDD;
+  background: #ddd;
   border-radius: 16px;
   margin: 0 auto 20px auto;
 `;
@@ -66,29 +66,47 @@ const CardIcon = styled.span`
   background-repeat: no-repeat;
   background-size: 32px 20px;
 
-  ${props => props.type === "amex" ? `
+  ${props =>
+    props.type === 'amex'
+      ? `
     background-image: url("/static/img/icons/amex.png");
-  ` : ""}
+  `
+      : ''}
 
-  ${props => props.type === "diners" ? `
+  ${props =>
+    props.type === 'diners'
+      ? `
     background-image: url("/static/img/icons/diners.png");
-  ` : ""}
+  `
+      : ''}
 
-  ${props => props.type === "discover" ? `
+  ${props =>
+    props.type === 'discover'
+      ? `
     background-image: url("/static/img/icons/discover.png");
-  ` : ""}
+  `
+      : ''}
 
-  ${props => props.type === "jcb" ? `
+  ${props =>
+    props.type === 'jcb'
+      ? `
     background-image: url("/static/img/icons/jcb.png");
-  ` : ""}
+  `
+      : ''}
 
-  ${props => props.type === "mastercard" ? `
+  ${props =>
+    props.type === 'mastercard'
+      ? `
     background-image: url("/static/img/icons/mastercard.png");
-  ` : ""}
+  `
+      : ''}
 
-  ${props => props.type === "visa" ? `
+  ${props =>
+    props.type === 'visa'
+      ? `
     background-image: url("/static/img/icons/visa.png");
-  ` : ""}
+  `
+      : ''}
 `;
 
 CardIcon.propTypes = {
@@ -125,7 +143,7 @@ export default class PaymentForm extends Component {
   };
 
   static defaultProps = {
-    submitText: "Submit",
+    submitText: 'Submit',
     customAmount: true,
     minAmount: 0
   };
@@ -149,8 +167,8 @@ export default class PaymentForm extends Component {
         maxDecimalPlaces: 2
       }),
       number: forms.CharField({
-        initial: "",
-        label: "•••• •••• •••• ••••",
+        initial: '',
+        label: '•••• •••• •••• ••••',
         widgetAttrs: {
           onKeyPress: event => {
             PaymentUtils.restrictNumeric(event);
@@ -172,7 +190,7 @@ export default class PaymentForm extends Component {
         }
       }),
       cvc: forms.CharField({
-        label: "•••",
+        label: '•••',
         maxLength: 4,
         widgetAttrs: {
           onKeyPress: event => {
@@ -191,7 +209,7 @@ export default class PaymentForm extends Component {
         }
       }),
       exp: forms.CharField({
-        label: "MM / YY",
+        label: 'MM / YY',
         widgetAttrs: {
           onKeyPress: event => {
             PaymentUtils.restrictNumeric(event);
@@ -212,20 +230,20 @@ export default class PaymentForm extends Component {
         }
       }),
       name: forms.CharField({
-        label: "Name on card"
+        label: 'Name on card'
       }),
       clean() {
         if (this.cleanedData.exp) {
           const { month, year } = PaymentUtils.getCardExpiryVal(this.cleanedData.exp);
-          this.cleanedData["exp_month"] = month;
-          this.cleanedData["exp_year"] = year;
+          this.cleanedData['exp_month'] = month;
+          this.cleanedData['exp_year'] = year;
         }
       }
     });
     return new PaymentDetailsForm({ onChange: this.onFormChange });
   }
 
-  onFormChange = () => this.forceUpdate()
+  onFormChange = () => this.forceUpdate();
 
   handleFormSubmit = event => {
     event.preventDefault();
@@ -234,7 +252,7 @@ export default class PaymentForm extends Component {
     if (form.validate()) {
       this.props.onSubmit(form.cleanedData);
     }
-  }
+  };
 
   render() {
     const fields = this.state.form.boundFieldsObj();
@@ -242,10 +260,13 @@ export default class PaymentForm extends Component {
 
     return (
       <FormComponent onSubmit={this.handleFormSubmit}>
-        {customAmount ?
+        {customAmount ? (
           <Amount>
             I can contribute {currency} <AmountFormField field={fields.amount} />
-          </Amount> : ""}
+          </Amount>
+        ) : (
+          ''
+        )}
 
         <CardDetails>
           <Title>Card Details</Title>

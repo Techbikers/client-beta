@@ -1,9 +1,9 @@
-import React, { PropTypes } from "react";
-import styled from "styled-components";
+import React, { PropTypes } from 'react';
+import styled from 'styled-components';
 
-import { SponsorShape } from "sponsors/shapes";
+import { SponsorShape } from 'sponsors/shapes';
 
-import Sponsor from "sponsors/components/Sponsor";
+import Sponsor from 'sponsors/components/Sponsor';
 
 const Wrapper = styled.section`
   border-top: 1px solid #e2e2e2;
@@ -24,9 +24,7 @@ const Group = styled.div`
   flex-direction: row;
 `;
 
-const Column = styled.div`
-  
-`
+const Column = styled.div``;
 
 const Header = styled.h2`
   text-align: center;
@@ -37,43 +35,36 @@ const Header = styled.h2`
 const RideSponsors = ({ gold, silver, bronze, bottle, kit, inkind, homecoming }) => (
   <Wrapper>
     <Content>
-      {gold &&
+      {gold && (
         <Group>
           <Header>Our headline sponsor</Header>
-          {gold.map(sponsor =>
-            <Sponsor key={sponsor.id} {...sponsor} />
-          )}
-        </Group>}
+          {gold.map(sponsor => <Sponsor key={sponsor.id} {...sponsor} />)}
+        </Group>
+      )}
 
-      {silver &&
+      {silver && (
         <Group>
           <Header>Silver sponsors</Header>
-          {silver.map(sponsor =>
-            <Sponsor key={sponsor.id} {...sponsor} />
-          )}
-        </Group>}
+          {silver.map(sponsor => <Sponsor key={sponsor.id} {...sponsor} />)}
+        </Group>
+      )}
 
-      {bronze &&
+      {bronze && (
         <Group>
           <Header>Bronze sponsors</Header>
-          {bronze.map(sponsor =>
-            <Sponsor key={sponsor.id} {...sponsor} />
-          )}
-        </Group>}
+          {bronze.map(sponsor => <Sponsor key={sponsor.id} {...sponsor} />)}
+        </Group>
+      )}
 
       <Group>
-        {bottle &&
-          <Sponsors sponsors={bottle} label="Bottle sponsors"/>}
+        {bottle && <Sponsors sponsors={bottle} label="Bottle sponsors" />}
 
-        {homecoming &&
-          <Sponsors sponsors={homecoming} label="Homecoming party sponsors"/>}
+        {homecoming && <Sponsors sponsors={homecoming} label="Homecoming party sponsors" />}
 
-        {kit &&
-          <Sponsors sponsors={kit} label="Kit sponsors"/>}
+        {kit && <Sponsors sponsors={kit} label="Kit sponsors" />}
       </Group>
 
-      {inkind &&
-        <Sponsors sponsors={inkind} label="In kind sponsors"/>}
+      {inkind && <Sponsors sponsors={inkind} label="In kind sponsors" />}
     </Content>
   </Wrapper>
 );

@@ -1,11 +1,11 @@
-import React, { Component, PropTypes } from "react";
-import { connect } from "react-redux";
-import { locationShape } from "react-router";
-import { isEqual } from "lodash";
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { locationShape } from 'react-router';
+import { isEqual } from 'lodash';
 
-import { updateCurrentEntity } from "app/actions";
+import { updateCurrentEntity } from 'app/actions';
 
-import App from "app/components/App";
+import App from 'app/components/App';
 
 const mapDispatchToProps = {
   updateCurrentEntity
@@ -18,16 +18,16 @@ class AppContainer extends Component {
     params: PropTypes.shape({
       id: PropTypes.string
     }),
-    updateCurrentEntity: PropTypes.func.isRequired,
+    updateCurrentEntity: PropTypes.func.isRequired
   };
 
   updateEntity = props => {
     const { params, location } = props;
     if (params.id || params.name) {
-      const type = location.pathname.split("/")[1].slice(0, -1);
+      const type = location.pathname.split('/')[1].slice(0, -1);
       props.updateCurrentEntity(params.id && Number(params.id), params.name, type);
     }
-  }
+  };
 
   componentWillMount() {
     // Set the entity id for this page based on the url parameters
@@ -53,9 +53,11 @@ class AppContainer extends Component {
 
   render() {
     const { location, children, ...props } = this.props;
-    const isModal = (location.state && location.state.modal && this.previousChildren);
+    const isModal = location.state && location.state.modal && this.previousChildren;
 
-    return <App {...props} children={isModal ? this.previousChildren : children} modalChildren={isModal ? children : null} />;
+    return (
+      <App {...props} children={isModal ? this.previousChildren : children} modalChildren={isModal ? children : null} />
+    );
   }
 }
 

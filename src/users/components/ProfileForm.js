@@ -1,34 +1,34 @@
-import React, { Component, PropTypes } from "react";
-import { connect } from "react-redux";
-import forms, { Form } from "newforms";
-import styled from "styled-components";
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import forms, { Form } from 'newforms';
+import styled from 'styled-components';
 
-import { UserShape } from "users/shapes";
-import { updateUser } from "users/actions";
+import { UserShape } from 'users/shapes';
+import { updateUser } from 'users/actions';
 
-import FormField from "components/FormField";
-import Button from "components/Button";
+import FormField from 'components/FormField';
+import Button from 'components/Button';
 
 const ProfileFormDefinition = Form.extend({
   firstName: forms.CharField({
-    label: "First name"
+    label: 'First name'
   }),
   lastName: forms.CharField({
-    label: "Last name"
+    label: 'Last name'
   }),
   // email: forms.CharField({
   //   label: "Email"
   // }),
   website: forms.CharField({
-    label: "Website",
+    label: 'Website',
     required: false
   }),
   twitter: forms.CharField({
-    label: "Twitter",
+    label: 'Twitter',
     required: false
   }),
   company: forms.CharField({
-    label: "Company",
+    label: 'Company',
     required: false
   })
 });
@@ -37,8 +37,7 @@ const mapDispatchToProps = {
   updateUser
 };
 
-const FormElement = styled.form`
-`;
+const FormElement = styled.form``;
 
 const Row = styled.div`
   display: flex;
@@ -91,9 +90,7 @@ class ProfileForm extends Component {
           <FormField field={fields.company} />
         </Row>
         <Row>
-          <Button type="submit">
-            Save
-          </Button>
+          <Button type="submit">Save</Button>
         </Row>
       </FormElement>
     );

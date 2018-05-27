@@ -1,22 +1,22 @@
-import React, { PropTypes, Component } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router";
-import DocumentTitle from "react-document-title";
-import { FormattedNumber } from "react-intl";
+import React, { PropTypes, Component } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router';
+import DocumentTitle from 'react-document-title';
+import { FormattedNumber } from 'react-intl';
 
-import { fetchRideById } from "rides/actions";
-import { fetchSponsorsByRide } from "sponsors/actions";
-import { getCurrentRide } from "rides/selectors";
-import { updatePageMeta } from "app/actions";
-import { getChapterForCurrentRide } from "chapters/selectors";
-import { getSponsorsForCurrentRide } from "sponsors/selectors";
-import { RideShape } from "rides/shapes";
-import { ChapterShape } from "chapters/shapes";
+import { fetchRideById } from 'rides/actions';
+import { fetchSponsorsByRide } from 'sponsors/actions';
+import { getCurrentRide } from 'rides/selectors';
+import { updatePageMeta } from 'app/actions';
+import { getChapterForCurrentRide } from 'chapters/selectors';
+import { getSponsorsForCurrentRide } from 'sponsors/selectors';
+import { RideShape } from 'rides/shapes';
+import { ChapterShape } from 'chapters/shapes';
 
-import RideRegistration from "rides/containers/RideRegistration";
-import ConnectedRidersList from "rides/containers/ConnectedRidersList";
-import Timestamp from "components/Timestamp";
-import Spinner from "components/Spinner";
+import RideRegistration from 'rides/containers/RideRegistration';
+import ConnectedRidersList from 'rides/containers/ConnectedRidersList';
+import Timestamp from 'components/Timestamp';
+import Spinner from 'components/Spinner';
 
 const mapStateToProps = state => ({
   ride: getCurrentRide(state),
@@ -27,10 +27,13 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch, props) => ({
   fetchCurrentRide: () => dispatch(fetchRideById(props.params.id)),
   fetchSponsors: () => dispatch(fetchSponsorsByRide(props.params.id)),
-  updatePageMetaForCurrentRide: (name, description) => dispatch(updatePageMeta({
-    "og:title": `Techbikers - ${name}`,
-    "og:description": description
-  }))
+  updatePageMetaForCurrentRide: (name, description) =>
+    dispatch(
+      updatePageMeta({
+        'og:title': `Techbikers - ${name}`,
+        'og:description': description
+      })
+    )
 });
 
 class RidePage extends Component {
@@ -72,13 +75,25 @@ class RidePage extends Component {
               <header>
                 <h1 itemProp="name">{ride.name}</h1>
                 <h3>
-                  <Timestamp value={ride.startDate} format="D MMM" itemProp="startDate" /> to <Timestamp value={ride.endDate} format="D MMM YYYY" itemProp="endDate" />
+                  <Timestamp value={ride.startDate} format="D MMM" itemProp="startDate" /> to{' '}
+                  <Timestamp value={ride.endDate} format="D MMM YYYY" itemProp="endDate" />
                 </h3>
-                <h3>Part of the <Link to={`/chapters/${chapter.name.toLowerCase()}`} >{chapter.name}</Link> chapter</h3>
+                <h3>
+                  Part of the <Link to={`/chapters/${chapter.name.toLowerCase()}`}>{chapter.name}</Link> chapter
+                </h3>
               </header>
 
               <div className="content">
-                <h2>We've raised <FormattedNumber style="currency" currency={ride.currency} value={ride.fundraisingTotal} maximumFractionDigits={0} minimumFractionDigits={0} />!</h2>
+                <h2>
+                  We've raised{' '}
+                  <FormattedNumber
+                    style="currency"
+                    currency={ride.currency}
+                    value={ride.fundraisingTotal}
+                    maximumFractionDigits={0}
+                    minimumFractionDigits={0}
+                  />!
+                </h2>
               </div>
             </section>
 

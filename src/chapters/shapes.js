@@ -1,4 +1,4 @@
-import { PropTypes } from "react";
+import { PropTypes } from 'react';
 
 export const ChapterShape = PropTypes.shape({
   id: PropTypes.number.isRequired,

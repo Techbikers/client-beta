@@ -1,16 +1,13 @@
-import { takeEvery, call, fork, put } from "redux-saga/effects";
-import { schema } from "normalizr";
+import { takeEvery, call, fork, put } from 'redux-saga/effects';
+import { schema } from 'normalizr';
 
-import { formatUserObject } from "users/helpers";
-import { callApi, apiPut } from "utils/api";
-import { FundraiserSchema } from "fundraisers/sagas";
-import * as actions from "users/actions";
-import {
-  createTextNotification,
-  createErrorNotification
-} from "notifications/actions";
+import { formatUserObject } from 'users/helpers';
+import { callApi, apiPut } from 'utils/api';
+import { FundraiserSchema } from 'fundraisers/sagas';
+import * as actions from 'users/actions';
+import { createTextNotification, createErrorNotification } from 'notifications/actions';
 
-export const UserSchema = new schema.Entity("user", {
+export const UserSchema = new schema.Entity('user', {
   fundraisers: [FundraiserSchema]
 });
 
@@ -39,7 +36,7 @@ export function* updateUser({ payload }) {
   const { error } = yield call(apiPut, `/riders/${payload.id}`, user, UserSchema);
 
   if (!error) {
-    yield put(createTextNotification("Profile updated"));
+    yield put(createTextNotification('Profile updated'));
   } else {
     yield put(createErrorNotification("Whoops - we couldn't update your profile"));
   }

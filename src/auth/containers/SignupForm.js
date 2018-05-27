@@ -1,14 +1,14 @@
-import React, { Component, PropTypes } from "react";
-import { connect } from "react-redux";
-import { Link, locationShape } from "react-router";
-import forms, { Form } from "newforms";
-import { slice } from "lodash";
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { Link, locationShape } from 'react-router';
+import forms, { Form } from 'newforms';
+import { slice } from 'lodash';
 
-import { getLocation } from "app/selectors";
-import { signup } from "auth/actions";
+import { getLocation } from 'app/selectors';
+import { signup } from 'auth/actions';
 
-import FormField from "components/FormField";
-import Button from "components/Button";
+import FormField from 'components/FormField';
+import Button from 'components/Button';
 
 /* eslint-disable camelcase, babel/new-cap */
 const NewRiderForm = Form.extend({
@@ -18,8 +18,8 @@ const NewRiderForm = Form.extend({
   company: forms.CharField({ required: false }),
   website: forms.URLField({ required: false }),
   twitter: forms.CharField({ required: false }),
-  password: forms.CharField({ label: "Password", widget: forms.PasswordInput }),
-  password_confirm: forms.CharField({ label: "Confirm password", widget: forms.PasswordInput }),
+  password: forms.CharField({ label: 'Password', widget: forms.PasswordInput }),
+  password_confirm: forms.CharField({ label: 'Confirm password', widget: forms.PasswordInput }),
 
   cleanWebsite() {
     // Add a protocol if there isn't already one
@@ -34,7 +34,7 @@ const NewRiderForm = Form.extend({
     // Check that the passwords match
     if (this.cleanedData.password !== this.cleanedData.password_confirm) {
       const message = "Passwords don't match.";
-      this.addError("password_confirm", message);
+      this.addError('password_confirm', message);
       throw forms.ValidationError(message);
     }
   }
@@ -43,7 +43,7 @@ const NewRiderForm = Form.extend({
 
 const mapStateToProps = state => ({
   location: getLocation(state),
-  loading: state.auth.state === "authenticating"
+  loading: state.auth.state === 'authenticating'
 });
 
 const mapDispatchToProps = {
@@ -66,7 +66,7 @@ class SignupForm extends Component {
     };
   }
 
-  onFormChange = () => this.forceUpdate()
+  onFormChange = () => this.forceUpdate();
 
   handleSignup = event => {
     event.preventDefault();
@@ -75,7 +75,7 @@ class SignupForm extends Component {
     if (form.validate()) {
       this.props.signup(form.cleanedData);
     }
-  }
+  };
 
   render() {
     const { form } = this.state;
@@ -90,16 +90,12 @@ class SignupForm extends Component {
     return (
       <form onSubmit={this.handleSignup}>
         <div className="row">
-          <div className="span2 offset1">
-            {slice(fieldComponents, 0, 4)}
-          </div>
+          <div className="span2 offset1">{slice(fieldComponents, 0, 4)}</div>
 
-          <div className="span2">
-            {slice(fieldComponents, 4, 8)}
-          </div>
+          <div className="span2">{slice(fieldComponents, 4, 8)}</div>
         </div>
         <p className="centerText">
-          <Link to={{ pathname: "/login", state: { ...location.state } }}>
+          <Link to={{ pathname: '/login', state: { ...location.state } }}>
             Already have an account from a previous ride?
           </Link>
         </p>

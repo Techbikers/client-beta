@@ -1,14 +1,11 @@
-import { createSelector } from "reselect";
+import { createSelector } from 'reselect';
 
-import { getCurrentRide } from "rides/selectors";
+import { getCurrentRide } from 'rides/selectors';
 
 const sponsorEntities = state => state.entities.sponsor || {};
 const rideSponsorEntities = state => state.entities.rideSponsor || {};
 
-export const getAllSponsors = createSelector(
-  [sponsorEntities],
-  sponsors => Object.values(sponsors)
-);
+export const getAllSponsors = createSelector([sponsorEntities], sponsors => Object.values(sponsors));
 
 export const getSponsorsForCurrentRide = createSelector(
   [getCurrentRide, sponsorEntities, rideSponsorEntities],
@@ -22,10 +19,7 @@ export const getSponsorsForCurrentRide = createSelector(
       .reduce(
         (buckets, item) => ({
           ...buckets,
-          [item.sponsorLevel]: [
-            ...(buckets[item.sponsorLevel] || []),
-            sponsors[item.sponsor]
-          ]
+          [item.sponsorLevel]: [...(buckets[item.sponsorLevel] || []), sponsors[item.sponsor]]
         }),
         {}
       );

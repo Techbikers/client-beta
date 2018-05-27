@@ -1,15 +1,15 @@
-import React, { PropTypes } from "react";
-import { connect } from "react-redux";
-import cx from "classnames";
+import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
+import cx from 'classnames';
 
-import { closeRideRegistrationModal } from "rides/actions/ui";
+import { closeRideRegistrationModal } from 'rides/actions/ui';
 
 const mapDispatchToProps = {
   handleOnClick: closeRideRegistrationModal
 };
 
 const CloseRideRegistrationModalButton = ({ handleOnClick, className, text }) => (
-  <button className={cx("btn", className)} onClick={() => handleOnClick()}>
+  <button className={cx('btn', className)} onClick={() => handleOnClick()}>
     {text}
   </button>
 );

@@ -1,15 +1,15 @@
-import React, { Component, PropTypes } from "react";
-import { connect } from "react-redux";
-import { replace } from "react-router-redux";
-import DocumentTitle from "react-document-title";
-import forms, { Form } from "newforms";
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { replace } from 'react-router-redux';
+import DocumentTitle from 'react-document-title';
+import forms, { Form } from 'newforms';
 
-import { beginPasswordReset } from "auth/actions";
-import { clearPasswordResetStatus } from "auth/actions/ui";
+import { beginPasswordReset } from 'auth/actions';
+import { clearPasswordResetStatus } from 'auth/actions/ui';
 
-import Button from "components/Button";
-import requireAnonymity from "auth/containers/requireAnonymity";
-import FormField from "components/FormField";
+import Button from 'components/Button';
+import requireAnonymity from 'auth/containers/requireAnonymity';
+import FormField from 'components/FormField';
 
 const SendResetLinkForm = Form.extend({
   email: forms.EmailField()
@@ -17,7 +17,7 @@ const SendResetLinkForm = Form.extend({
 
 const mapStateToProps = state => {
   const { state: authState } = state.auth;
-  const isAuthenticated = authState === "authenticated";
+  const isAuthenticated = authState === 'authenticated';
 
   return {
     isAuthenticated,
@@ -48,7 +48,7 @@ class PasswordReset extends Component {
 
   onFormChange = () => {
     this.forceUpdate();
-  }
+  };
 
   handleResetPassword = event => {
     event.preventDefault();
@@ -58,7 +58,7 @@ class PasswordReset extends Component {
     if (form.validate()) {
       this.props.beginPasswordReset(form.cleanedData.email);
     }
-  }
+  };
 
   render() {
     const fields = this.state.form.boundFieldsObj();
@@ -70,33 +70,33 @@ class PasswordReset extends Component {
           <header>
             <h1>Forgotten Your Password?</h1>
           </header>
-          {resetStatus === "emailed" ?
+          {resetStatus === 'emailed' ? (
             <div className="content centerText">
-              <p className="centerText">
-                OK - we've just emailed you a link to reset your password.
-              </p>
+              <p className="centerText">OK - we've just emailed you a link to reset your password.</p>
               <Button onClick={() => this.props.clearPasswordResetStatus()}>Try again</Button>
             </div>
-          :
+          ) : (
             <div className="content">
               <p className="centerText">
-                No problem! Just enter the email address you used to register your account with, click continue,
-                and we'll send an email to that address with a link to reset your password.
+                No problem! Just enter the email address you used to register your account with, click continue, and
+                we'll send an email to that address with a link to reset your password.
               </p>
               <form id="resetpassword" role="form" onSubmit={this.handleResetPassword}>
                 <div className="row centerText">
-                  {Object.keys(fields).map(key =>
+                  {Object.keys(fields).map(key => (
                     <FormField key={fields[key].htmlName} field={fields[key]} className="span2 offset2" />
-                  )}
+                  ))}
                 </div>
                 <div className="row centerText">
                   <div className="span6">
-                    <Button loading={resetStatus === "loading"} kind="positive" type="submit">Continue</Button>
+                    <Button loading={resetStatus === 'loading'} kind="positive" type="submit">
+                      Continue
+                    </Button>
                   </div>
                 </div>
               </form>
             </div>
-          }
+          )}
         </section>
       </DocumentTitle>
     );

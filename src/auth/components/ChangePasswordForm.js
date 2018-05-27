@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const ChangePasswordForm = () => (
   <form>
@@ -14,7 +14,7 @@ const ChangePasswordForm = () => (
     </div>
     <div className="row">
       <p className="centerText">
-        <input type="submit" className="btn btn-primary" value="Change Password"/>
+        <input type="submit" className="btn btn-primary" value="Change Password" />
       </p>
     </div>
   </form>

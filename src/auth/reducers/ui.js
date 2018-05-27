@@ -1,6 +1,6 @@
-import { combineReducers } from "redux";
+import { combineReducers } from 'redux';
 
-import * as ui from "auth/actions/ui";
+import * as ui from 'auth/actions/ui';
 
 export default combineReducers({
   passwordResetStatus

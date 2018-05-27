@@ -1,18 +1,18 @@
-import React, { PropTypes } from "react";
+import React, { PropTypes } from 'react';
 
-import Modal from "components/Modal";
-import requireAuthentication from "auth/containers/requireAuthentication";
+import Modal from 'components/Modal';
+import requireAuthentication from 'auth/containers/requireAuthentication';
 
-import SetupFundraising from "fundraisers/containers/SetupFundraising";
-import ConnectedPreRegistrationForm from "rides/containers/ConnectedPreRegistrationForm";
-import ConnectedCompleteRegistration from "rides/containers/ConnectedCompleteRegistration";
-import CloseRideRegistrationModalButton from "rides/containers/CloseRideRegistrationModalButton";
+import SetupFundraising from 'fundraisers/containers/SetupFundraising';
+import ConnectedPreRegistrationForm from 'rides/containers/ConnectedPreRegistrationForm';
+import ConnectedCompleteRegistration from 'rides/containers/ConnectedCompleteRegistration';
+import CloseRideRegistrationModalButton from 'rides/containers/CloseRideRegistrationModalButton';
 
 const PendingRegistration = () => (
   <div>
     <p>
-      Awesome - we've received your application to join this ride. You'll hear from us soon
-      so in the meantime, why not jump on your bike and go for a ride.
+      Awesome - we've received your application to join this ride. You'll hear from us soon so in the meantime, why not
+      jump on your bike and go for a ride.
     </p>
     <CloseRideRegistrationModalButton className="btn-green" text="Great!" />
   </div>
@@ -20,9 +20,7 @@ const PendingRegistration = () => (
 
 const FullyRegistered = () => (
   <div>
-    <p>
-      Nice work - that's all from us. On your bike and let's change lives!
-    </p>
+    <p>Nice work - that's all from us. On your bike and let's change lives!</p>
     <CloseRideRegistrationModalButton text="OK!" />
   </div>
 );
@@ -30,8 +28,8 @@ const FullyRegistered = () => (
 const CreateFundraiser = () => (
   <div>
     <p>
-      You're all set! You've completed registration and we've received payment - all that's left
-      to do now is to setup your fundraising page and train!
+      You're all set! You've completed registration and we've received payment - all that's left to do now is to setup
+      your fundraising page and train!
     </p>
     <SetupFundraising />
     <CloseRideRegistrationModalButton text="Not right now" />
@@ -40,11 +38,11 @@ const CreateFundraiser = () => (
 
 const RideRegistrationModalContents = ({ status, hasFundraiser }) => {
   switch (status) {
-    case "ACC":
+    case 'ACC':
       return <ConnectedCompleteRegistration />;
-    case "PEN":
+    case 'PEN':
       return <PendingRegistration />;
-    case "REG":
+    case 'REG':
       if (!hasFundraiser) {
         return <CreateFundraiser />;
       } else {
@@ -62,7 +60,7 @@ RideRegistrationModalContents.propTypes = {
 
 const RideRegistrationModal = ({ isOpen = false, registrationStatus, hasFundraiser, onRequestClose }) => (
   <Modal isOpen={isOpen} onRequestClose={() => onRequestClose()}>
-    <RideRegistrationModalContents status={registrationStatus} hasFundraiser={hasFundraiser}/>
+    <RideRegistrationModalContents status={registrationStatus} hasFundraiser={hasFundraiser} />
   </Modal>
 );
 

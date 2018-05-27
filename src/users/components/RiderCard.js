@@ -1,8 +1,8 @@
-import React, { PropTypes } from "react";
-import { Link } from "react-router";
-import styled from "styled-components";
+import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
+import styled from 'styled-components';
 
-import Avatar from "users/components/Avatar";
+import Avatar from 'users/components/Avatar';
 
 const Rider = styled.li`
   margin: 5px;
@@ -23,7 +23,7 @@ const Rider = styled.li`
     padding-right: 15px;
     z-index: 2;
     text-align: left;
-    box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     white-space: nowrap;
     margin: 0;
     line-height: 60px;

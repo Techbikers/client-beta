@@ -1,22 +1,18 @@
-import React, { Component, PropTypes } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router";
-import DocumentTitle from "react-document-title";
-import styled from "styled-components";
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router';
+import DocumentTitle from 'react-document-title';
+import styled from 'styled-components';
 
-import {
-  getAuthenticatedUser,
-  getAuthenticatedUserId
-} from "auth/selectors";
-import { fetchUserById } from "users/actions";
-import { updateCurrentEntity } from "app/actions";
-import { UserShape } from "users/shapes";
+import { getAuthenticatedUser, getAuthenticatedUserId } from 'auth/selectors';
+import { fetchUserById } from 'users/actions';
+import { updateCurrentEntity } from 'app/actions';
+import { UserShape } from 'users/shapes';
 
-import requireAuthentication
-  from "auth/containers/requireAuthentication";
-import ProfileForm from "users/components/ProfileForm";
-import UserRidesList from "users/containers/UserRidesList";
-import Spinner from "components/Spinner";
+import requireAuthentication from 'auth/containers/requireAuthentication';
+import ProfileForm from 'users/components/ProfileForm';
+import UserRidesList from 'users/containers/UserRidesList';
+import Spinner from 'components/Spinner';
 
 const mapStateToProps = state => ({
   id: getAuthenticatedUserId(state),

@@ -1,5 +1,5 @@
-import React, { PropTypes } from "react";
-import styled from "styled-components";
+import React, { PropTypes } from 'react';
+import styled from 'styled-components';
 
 export default styled.div`
   position: absolute;

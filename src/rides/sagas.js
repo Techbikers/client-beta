@@ -1,15 +1,15 @@
-import { takeEvery, call, fork, put } from "redux-saga/effects";
-import { schema } from "normalizr";
+import { takeEvery, call, fork, put } from 'redux-saga/effects';
+import { schema } from 'normalizr';
 
-import { callApi } from "utils/api";
-import { stripeCreateToken } from "utils/payment";
-import * as actions from "rides/actions";
-import { ChapterSchema } from "chapters/sagas";
-import { UserSchema } from "users/sagas";
-import { addError } from "errors/actions";
+import { callApi } from 'utils/api';
+import { stripeCreateToken } from 'utils/payment';
+import * as actions from 'rides/actions';
+import { ChapterSchema } from 'chapters/sagas';
+import { UserSchema } from 'users/sagas';
+import { addError } from 'errors/actions';
 
-export const RegistrationSchema = new schema.Entity("registration");
-export const RideSchema = new schema.Entity("ride", {
+export const RegistrationSchema = new schema.Entity('registration');
+export const RideSchema = new schema.Entity('ride', {
   chapter: ChapterSchema,
   riders: [UserSchema]
 });
@@ -18,7 +18,7 @@ export const RideSchema = new schema.Entity("ride", {
  * Call the API to fetch all rides
  */
 export function* fetchAllRides() {
-  return yield call(callApi, "/rides/", {}, [RideSchema]);
+  return yield call(callApi, '/rides/', {}, [RideSchema]);
 }
 
 /**
@@ -55,8 +55,8 @@ export function* fetchRideRegistrationDetails({ payload: { rideId, userId } }) {
  */
 export function* rideRegistration({ payload: { rideId, payload } }) {
   const fetchOptions = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       ride: rideId,
       payload
@@ -81,17 +81,14 @@ export function* rideRegistrationPayment({ payload: { rideId, userId, amount, ca
   if (response.error) {
     // Something went wrong when getting the charge token
     const { type, message } = response.error;
-    yield [
-      put(actions.registrationFailure()),
-      put(addError("payment", type, message))
-    ];
+    yield [put(actions.registrationFailure()), put(addError('payment', type, message))];
     return false;
   }
 
   // Now we can go ahead and charge the user
   const fetchOptions = {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       ride: rideId,
       token: response.id,
@@ -107,7 +104,7 @@ export function* rideRegistrationPayment({ payload: { rideId, userId, amount, ca
   } else {
     // Something went wrong
     yield put(actions.registrationFailure());
-    yield result.error.map(error => put(addError("payment", "validation", error)));
+    yield result.error.map(error => put(addError('payment', 'validation', error)));
     return false; // TODO
   }
 }

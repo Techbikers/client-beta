@@ -1,5 +1,5 @@
-import _ from "lodash";
-import $ from "jquery";
+import _ from 'lodash';
+import $ from 'jquery';
 
 const defaultFormat = /(\d{1,4})/g;
 const cards = [
@@ -10,70 +10,80 @@ const cards = [
     length: [16],
     cvcLength: [3],
     luhn: true
-  }, {
+  },
+  {
     type: 'maestro',
     pattern: /^(5(018|0[23]|[68])|6(39|7))/,
     format: defaultFormat,
     length: [12, 13, 14, 15, 16, 17, 18, 19],
     cvcLength: [3],
     luhn: true
-  }, {
+  },
+  {
     type: 'forbrugsforeningen',
     pattern: /^600/,
     format: defaultFormat,
     length: [16],
     cvcLength: [3],
     luhn: true
-  }, {
+  },
+  {
     type: 'dankort',
     pattern: /^5019/,
     format: defaultFormat,
     length: [16],
     cvcLength: [3],
     luhn: true
-  }, {
+  },
+  {
     type: 'visa',
     pattern: /^4/,
     format: defaultFormat,
     length: [13, 16],
     cvcLength: [3],
     luhn: true
-  }, {
+  },
+  {
     type: 'mastercard',
     pattern: /^(5[0-5]|2[2-7])/,
     format: defaultFormat,
     length: [16],
     cvcLength: [3],
     luhn: true
-  }, {
+  },
+  {
     type: 'amex',
     pattern: /^3[47]/,
     format: /(\d{1,4})(\d{1,6})?(\d{1,5})?/,
     length: [15],
     cvcLength: [3, 4],
     luhn: true
-  }, {
+  },
+  {
     type: 'dinersclub',
     pattern: /^3[0689]/,
     format: /(\d{1,4})(\d{1,6})?(\d{1,4})?/,
     length: [14],
     cvcLength: [3],
     luhn: true
-  }, {
+  },
+  {
     type: 'discover',
     pattern: /^6([045]|22)/,
     format: defaultFormat,
     length: [16],
     cvcLength: [3],
     luhn: true
-  }, {
+  },
+  {
     type: 'unionpay',
     pattern: /^(62|88)/,
     format: defaultFormat,
     length: [16, 17, 18, 19],
     cvcLength: [3],
     luhn: false
-  }, {
+  },
+  {
     type: 'jcb',
     pattern: /^35/,
     format: defaultFormat,
@@ -87,7 +97,7 @@ const PaymentUtils = {
   cardFromNumber(num) {
     num = (num + '').replace(/\D/g, '');
     return _.find(cards, card => {
-      return card.pattern.test(num)
+      return card.pattern.test(num);
     });
   },
 
@@ -112,10 +122,16 @@ const PaymentUtils = {
 
   hasTextSelected($target) {
     var _ref;
-    if (($target.prop('selectionStart') != null) && $target.prop('selectionStart') !== $target.prop('selectionEnd')) {
+    if ($target.prop('selectionStart') != null && $target.prop('selectionStart') !== $target.prop('selectionEnd')) {
       return true;
     }
-    if ((typeof document !== "undefined" && document !== null ? (_ref = document.selection) != null ? _ref.createRange : void 0 : void 0) != null) {
+    if (
+      (typeof document !== 'undefined' && document !== null
+        ? (_ref = document.selection) != null
+          ? _ref.createRange
+          : void 0
+        : void 0) != null
+    ) {
       if (document.selection.createRange().text) {
         return true;
       }
@@ -156,7 +172,7 @@ const PaymentUtils = {
     if (length >= upperLength) {
       return;
     }
-    if (($target.prop('selectionStart') != null) && $target.prop('selectionStart') !== value.length) {
+    if ($target.prop('selectionStart') != null && $target.prop('selectionStart') !== value.length) {
       return;
     }
     if (card && card.type === 'amex') {
@@ -184,7 +200,7 @@ const PaymentUtils = {
     if (e.which !== 8) {
       return;
     }
-    if (($target.prop('selectionStart') != null) && $target.prop('selectionStart') !== value.length) {
+    if ($target.prop('selectionStart') != null && $target.prop('selectionStart') !== value.length) {
       return;
     }
     if (/\d\s$/.test(value)) {
@@ -219,12 +235,12 @@ const PaymentUtils = {
     if (/^\d$/.test(val) && (val !== '0' && val !== '1')) {
       e.preventDefault();
       return setTimeout(function() {
-        return $target.val("0" + val + " / ");
+        return $target.val('0' + val + ' / ');
       });
     } else if (/^\d\d$/.test(val)) {
       e.preventDefault();
       return setTimeout(function() {
-        return $target.val("" + val + " / ");
+        return $target.val('' + val + ' / ');
       });
     }
   },
@@ -238,7 +254,7 @@ const PaymentUtils = {
     $target = $(e.currentTarget);
     val = $target.val();
     if (/^\d\d$/.test(val)) {
-      return $target.val("" + val + " / ");
+      return $target.val('' + val + ' / ');
     }
   },
 
@@ -251,7 +267,7 @@ const PaymentUtils = {
     $target = $(e.currentTarget);
     val = $target.val();
     if (/^\d$/.test(val) && val !== '0') {
-      return $target.val("0" + val + " / ");
+      return $target.val('0' + val + ' / ');
     }
   },
 
@@ -262,7 +278,7 @@ const PaymentUtils = {
     if (e.which !== 8) {
       return;
     }
-    if (($target.prop('selectionStart') != null) && $target.prop('selectionStart') !== value.length) {
+    if ($target.prop('selectionStart') != null && $target.prop('selectionStart') !== value.length) {
       return;
     }
     if (/\d\s\/\s$/.test(value)) {
@@ -296,8 +312,7 @@ const PaymentUtils = {
       return true;
     }
     input = String.fromCharCode(e.which);
-    if (!/[\d\s]/.test(input))
-      e.preventDefault();
+    if (!/[\d\s]/.test(input)) e.preventDefault();
   },
 
   restrictCardNumber(e) {
@@ -313,11 +328,9 @@ const PaymentUtils = {
     value = ($target.val() + digit).replace(/\D/g, '');
     card = this.cardFromNumber(value);
     if (card) {
-      if (value.length > card.length[card.length.length - 1])
-        e.preventDefault();
+      if (value.length > card.length[card.length.length - 1]) e.preventDefault();
     } else {
-      if (value.length > 16)
-        e.preventDefault();
+      if (value.length > 16) e.preventDefault();
     }
   },
 
@@ -363,13 +376,13 @@ const PaymentUtils = {
     if (!card) {
       return false;
     }
-    return (_ref = num.length, card.length.indexOf(_ref) >= 0) && (card.luhn === false || this.luhnCheck(num));
+    return ((_ref = num.length), card.length.indexOf(_ref) >= 0) && (card.luhn === false || this.luhnCheck(num));
   },
 
   validateCardExpiry(month, year) {
     var currentTime, expiry, _ref;
     if (typeof month === 'object' && 'month' in month) {
-      _ref = month, month = _ref.month, year = _ref.year;
+      (_ref = month), (month = _ref.month), (year = _ref.year);
     }
     if (!(month && year)) {
       return false;
@@ -382,21 +395,21 @@ const PaymentUtils = {
     if (!/^\d+$/.test(year)) {
       return false;
     }
-    if (!((1 <= month && month <= 12))) {
+    if (!(1 <= month && month <= 12)) {
       return false;
     }
     if (year.length === 2) {
       if (year < 70) {
-        year = "20" + year;
+        year = '20' + year;
       } else {
-        year = "19" + year;
+        year = '19' + year;
       }
     }
     if (year.length !== 4) {
       return false;
     }
     expiry = new Date(year, month);
-    currentTime = new Date;
+    currentTime = new Date();
     expiry.setMonth(expiry.getMonth() - 1);
     expiry.setMonth(expiry.getMonth() + 1, 1);
     return expiry > currentTime;
@@ -407,15 +420,15 @@ const PaymentUtils = {
     if (!num) {
       return null;
     }
-    return _.result(this.cardFromNumber(num), "type");
+    return _.result(this.cardFromNumber(num), 'type');
   },
 
   getCardExpiryVal(value) {
     var month, prefix, year, _ref;
     value = value.replace(/\s/g, '');
-    _ref = value.split('/', 2), month = _ref[0], year = _ref[1];
+    (_ref = value.split('/', 2)), (month = _ref[0]), (year = _ref[1]);
     if ((year != null ? year.length : void 0) === 2 && /^\d+$/.test(year)) {
-      prefix = (new Date).getFullYear();
+      prefix = new Date().getFullYear();
       prefix = prefix.toString().slice(0, 2);
       year = prefix + year;
     }
@@ -468,7 +481,7 @@ const PaymentUtils = {
     } else if (mon.length === 2 || sep.length > 0) {
       sep = ' / ';
     } else if (mon.length === 1 && (mon !== '0' && mon !== '1')) {
-      mon = "0" + mon;
+      mon = '0' + mon;
       sep = ' / ';
     }
     return mon + sep + year;

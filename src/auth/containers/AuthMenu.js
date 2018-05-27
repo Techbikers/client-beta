@@ -1,15 +1,15 @@
-import React, { Component, PropTypes } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router";
-import styled from "styled-components";
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router';
+import styled from 'styled-components';
 
-import { logout } from "auth/actions";
-import { getCurrentPathname } from "app/selectors";
-import { getAuthenticatedUserId } from "auth/selectors";
+import { logout } from 'auth/actions';
+import { getCurrentPathname } from 'app/selectors';
+import { getAuthenticatedUserId } from 'auth/selectors';
 
 const mapStateToProps = state => {
   const { state: authState } = state.auth;
-  const isAuthenticated = authState === "authenticated";
+  const isAuthenticated = authState === 'authenticated';
   const pathname = getCurrentPathname(state);
   const userId = getAuthenticatedUserId(state);
 
@@ -24,14 +24,16 @@ const LogOutLink = styled.a`
   margin-right: 20px;
   cursor: pointer;
 
-  &, &:hover {
-    color: #FDEC18;
+  &,
+  &:hover {
+    color: #fdec18;
   }
 `;
 
 const StyledLink = styled(Link)`
-  &, &:hover {
-    color: #FDEC18;
+  &,
+  &:hover {
+    color: #fdec18;
   }
 `;
 
@@ -55,10 +57,12 @@ class AuthMenu extends Component {
       );
     } else {
       return (
-        <StyledLink to={{
-          pathname: "/login",
-          state: { modal: true, returnTo: pathname }
-        }}>
+        <StyledLink
+          to={{
+            pathname: '/login',
+            state: { modal: true, returnTo: pathname }
+          }}
+        >
           Login to Techbikers
         </StyledLink>
       );

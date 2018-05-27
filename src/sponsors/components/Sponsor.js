@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-import { SponsorShape } from "sponsors/shapes";
+import { SponsorShape } from 'sponsors/shapes';
 
 const Media = styled.div`
   overflow: hidden;
@@ -14,7 +14,7 @@ const Bd = styled.div`
 `;
 
 const ImageLink = styled.a`
-  float:left;
+  float: left;
   margin-right: 20px;
 `;
 
@@ -28,10 +28,14 @@ const Sponsor = ({ sponsor }) => (
       <Image src={sponsor.logo} alt={sponsor.organization} />
     </ImageLink>
     <Bd>
-      <h3><a href={sponsor.website} target="_blank">{sponsor.organization}</a></h3>
+      <h3>
+        <a href={sponsor.website} target="_blank">
+          {sponsor.organization}
+        </a>
+      </h3>
       <p>
         {sponsor.description}
-        <br/>
+        <br />
         <a href={sponsor.facebook}>Facebook</a> | <a href={sponsor.twitter}>Twitter</a>
       </p>
     </Bd>

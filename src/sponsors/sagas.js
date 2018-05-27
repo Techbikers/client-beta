@@ -1,14 +1,18 @@
-import { takeEvery, call, fork } from "redux-saga/effects";
-import { schema } from "normalizr";
+import { takeEvery, call, fork } from 'redux-saga/effects';
+import { schema } from 'normalizr';
 
-import { callApi } from "utils/api";
-import * as actions from "sponsors/actions";
+import { callApi } from 'utils/api';
+import * as actions from 'sponsors/actions';
 
-export const RideSponsorSchema = new schema.Entity("rideSponsor", {}, {
-  idAttribute: value => `${value.ride}-${value.sponsor}`
-});
+export const RideSponsorSchema = new schema.Entity(
+  'rideSponsor',
+  {},
+  {
+    idAttribute: value => `${value.ride}-${value.sponsor}`
+  }
+);
 
-export const SponsorSchema = new schema.Entity("sponsor", {
+export const SponsorSchema = new schema.Entity('sponsor', {
   rides: [RideSponsorSchema]
 });
 
@@ -16,7 +20,7 @@ export const SponsorSchema = new schema.Entity("sponsor", {
  * Fetch all sponsors
  */
 export function* fetchAllSponsors() {
-  return yield call(callApi, "/sponsors/", {}, [SponsorSchema]);
+  return yield call(callApi, '/sponsors/', {}, [SponsorSchema]);
 }
 
 /**

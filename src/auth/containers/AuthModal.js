@@ -1,9 +1,9 @@
-import React, { Component, PropTypes } from "react";
-import { connect } from "react-redux";
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 
-import Modal from "components/Modal";
-import { authenticateAs, closeAuthModal } from "auth/actions";
-import LoginForm from "auth/components/LoginForm";
+import Modal from 'components/Modal';
+import { authenticateAs, closeAuthModal } from 'auth/actions';
+import LoginForm from 'auth/components/LoginForm';
 
 const mapStateToProps = state => ({
   authModalOpen: state.page.ui

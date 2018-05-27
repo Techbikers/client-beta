@@ -1,50 +1,53 @@
-import jwtDecode from "jwt-decode";
-import { handleActions, combineActions } from "redux-actions";
+import jwtDecode from 'jwt-decode';
+import { handleActions, combineActions } from 'redux-actions';
 
-import * as actions from "auth/actions";
+import * as actions from 'auth/actions';
 
-export default handleActions({
-  [combineActions(actions.authenticateUser, actions.signup)]: state => ({
-    ...state,
-    state: "authenticating"
-  }),
-
-  [actions.authSuccess]: (state, { payload }) => {
-    const { idToken, accessToken } = payload;
-    const claims = jwtDecode(idToken);
-
-    return {
+export default handleActions(
+  {
+    [combineActions(actions.authenticateUser, actions.signup)]: state => ({
       ...state,
-      state: "authenticated",
-      idToken,
-      accessToken,
-      claims
-    };
+      state: 'authenticating'
+    }),
+
+    [actions.authSuccess]: (state, { payload }) => {
+      const { idToken, accessToken } = payload;
+      const claims = jwtDecode(idToken);
+
+      return {
+        ...state,
+        state: 'authenticated',
+        idToken,
+        accessToken,
+        claims
+      };
+    },
+
+    [actions.authFailure]: state => ({
+      ...state,
+      state: 'unauthenticated'
+    }),
+
+    [actions.logout]: () => ({
+      state: 'unauthenticated',
+      claims: {}
+    }),
+
+    [actions.storeAuthCallback]: (state, { payload }) => ({
+      ...state,
+      callback: {
+        ...payload
+      }
+    }),
+
+    [actions.clearAuthCallback]: state => ({
+      ...state,
+      callback: {}
+    })
   },
-
-  [actions.authFailure]: state => ({
-    ...state,
-    state: "unauthenticated"
-  }),
-
-  [actions.logout]: () => ({
-    state: "unauthenticated",
-    claims: {}
-  }),
-
-  [actions.storeAuthCallback]: (state, { payload }) => ({
-    ...state,
-    callback: {
-      ...payload
-    }
-  }),
-
-  [actions.clearAuthCallback]: state => ({
-    ...state,
+  {
+    state: 'unauthenticated',
+    claims: {},
     callback: {}
-  })
-}, {
-  state: "unauthenticated",
-  claims: {},
-  callback: {}
-});
+  }
+);
