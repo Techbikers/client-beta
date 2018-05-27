@@ -1,4 +1,4 @@
-import { merge } from "lodash";
+import { merge } from 'lodash';
 
 export default function entities(state = {}, { response, payload }) {
   if (response && response.entities) {

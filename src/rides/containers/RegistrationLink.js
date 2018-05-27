@@ -1,22 +1,20 @@
-import React, { Component, PropTypes } from "react";
-import { connect } from "react-redux";
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 
-import { fetchRideRegistrationDetails } from "rides/actions";
-import {
-  openRideRegistrationModal,
-  closeRideRegistrationModal } from "rides/actions/ui";
-import { getAuthenticatedUser } from "auth/selectors";
-import { getRegistrationForCurrentRideAndUser } from "rides/selectors";
-import { getFundraiserForCurrentRideAndUser } from "fundraisers/selectors";
-import { getCurrentRide } from "rides/selectors";
-import { getChapterForCurrentRide } from "chapters/selectors";
-import { RideShape, RegistrationShape } from "rides/shapes";
-import { UserShape } from "users/shapes";
-import { FundraiserShape } from "fundraisers/shapes";
+import { fetchRideRegistrationDetails } from 'rides/actions';
+import { openRideRegistrationModal, closeRideRegistrationModal } from 'rides/actions/ui';
+import { getAuthenticatedUser } from 'auth/selectors';
+import { getRegistrationForCurrentRideAndUser } from 'rides/selectors';
+import { getFundraiserForCurrentRideAndUser } from 'fundraisers/selectors';
+import { getCurrentRide } from 'rides/selectors';
+import { getChapterForCurrentRide } from 'chapters/selectors';
+import { RideShape, RegistrationShape } from 'rides/shapes';
+import { UserShape } from 'users/shapes';
+import { FundraiserShape } from 'fundraisers/shapes';
 
-import ButtonLink from "components/ButtonLink";
-import RegistrationSteps from "rides/components/RegistrationSteps";
-import SetupFundraising from "fundraisers/containers/SetupFundraising";
+import ButtonLink from 'components/ButtonLink';
+import RegistrationSteps from 'rides/components/RegistrationSteps';
+import SetupFundraising from 'fundraisers/containers/SetupFundraising';
 
 const mapStateToProps = state => {
   const { rideRegistrationModal } = state.ui.rides;
@@ -77,9 +75,7 @@ export default class RideRegistration extends Component {
         <header className="header-btn">
           <a className="btn">Now sold out</a>
         </header>
-        <span className="more-info">
-          Registration for this ride has closed as it is now sold out
-        </span>
+        <span className="more-info">Registration for this ride has closed as it is now sold out</span>
       </div>
     );
   }
@@ -94,8 +90,8 @@ export default class RideRegistration extends Component {
           <RegistrationSteps step={2} state="pending" />
           <div className="ride-registration--details">
             <p>
-              We've received your application to join this ride. You'll hear from us soon
-              so in the meantime, why not jump on your bike and go for a ride?
+              We've received your application to join this ride. You'll hear from us soon so in the meantime, why not
+              jump on your bike and go for a ride?
             </p>
           </div>
         </div>
@@ -110,12 +106,12 @@ export default class RideRegistration extends Component {
           <a className="btn">Invite Expired</a>
         </header>
         <div className="ride-registration--content">
-          <RegistrationSteps step={3} state="failed"/>
+          <RegistrationSteps step={3} state="failed" />
           <div className="ride-registration--details">
             <p>
-              Unfortunately your invite to register for this ride has now expired. Demand for our rides
-              is always high so if you fail to accept the invite to register for the ride then we give
-              your spot to someone else on the waiting list.
+              Unfortunately your invite to register for this ride has now expired. Demand for our rides is always high
+              so if you fail to accept the invite to register for the ride then we give your spot to someone else on the
+              waiting list.
             </p>
           </div>
         </div>
@@ -130,12 +126,11 @@ export default class RideRegistration extends Component {
           <a className="btn">No invite</a>
         </header>
         <div className="ride-registration--content">
-          <RegistrationSteps step={2} state="failed"/>
+          <RegistrationSteps step={2} state="failed" />
           <div className="ride-registration--details">
             <p>
-              Due to exceptional demand we've been unable to invite you to join the ride.
-              Sorry if this is a disappointing outcome but we hope you'll apply to join
-              another Techbikers ride in the future!
+              Due to exceptional demand we've been unable to invite you to join the ride. Sorry if this is a
+              disappointing outcome but we hope you'll apply to join another Techbikers ride in the future!
             </p>
           </div>
         </div>
@@ -152,14 +147,16 @@ export default class RideRegistration extends Component {
           <a className="btn btn-grey">You've been invited to join!</a>
         </header>
         <div className="ride-registration--content">
-          <RegistrationSteps step={3} state="pending"/>
+          <RegistrationSteps step={3} state="pending" />
           <div className="ride-registration--details">
             <p>
-              Good news, {user.first_name} - you've been invited to join the ride. You now need to confirm
-              and pay the registration fee before your invite expires.
+              Good news, {user.first_name} - you've been invited to join the ride. You now need to confirm and pay the
+              registration fee before your invite expires.
             </p>
           </div>
-          <a className="btn btn-green" onClick={() => this.props.handleOpenModal()}>Complete Registration</a>
+          <a className="btn btn-green" onClick={() => this.props.handleOpenModal()}>
+            Complete Registration
+          </a>
         </div>
       </div>
     );
@@ -172,7 +169,7 @@ export default class RideRegistration extends Component {
           <a className="btn">You're signed up for the ride!</a>
         </header>
         <div className="ride-registration--content">
-          <RegistrationSteps step={4}/>
+          <RegistrationSteps step={4} />
           <div className="ride-registration--details">
             <p>
               <SetupFundraising {...this.props} />
@@ -187,7 +184,9 @@ export default class RideRegistration extends Component {
     return (
       <div className="ride-registration--container">
         <header className="header-btn">
-          <a className="btn btn-green" onClick={() => this.props.handleOpenModal()}>Sign up for the ride!</a>
+          <a className="btn btn-green" onClick={() => this.props.handleOpenModal()}>
+            Sign up for the ride!
+          </a>
         </header>
       </div>
     );
@@ -206,13 +205,13 @@ export default class RideRegistration extends Component {
       const { status, expired } = registration;
 
       switch (status) {
-        case "PEN":
+        case 'PEN':
           // The logged in rider has a pending registration for this ride.
           // This means they are waiting to be accepted so they can then
           // complete their registration.
           return this.renderPendingRegistration();
 
-        case "ACC":
+        case 'ACC':
           // The current rider has been accepted onto the ride. If their invite
           // to register hasn't expired then show them a form to complete signup.
           if (expired) {
@@ -221,13 +220,13 @@ export default class RideRegistration extends Component {
 
           return this.renderCompleteRegistration();
 
-        case "REG":
+        case 'REG':
           // The logged in rider has already signed up for the ride and
           // is confirmed as fully registered. No need to do anything
           // but get on that bike and train!
           return this.renderCompletedRegistration();
 
-        case "REJ":
+        case 'REJ':
           return this.renderRejectedRegistration();
         default:
           return null;
@@ -242,9 +241,7 @@ export default class RideRegistration extends Component {
 
     return (
       <section id="ride-registration">
-        <ButtonLink to={`/rides/${ride.id}/${ride.slug}/registration`}>
-          Sign up for the ride!
-        </ButtonLink>
+        <ButtonLink to={`/rides/${ride.id}/${ride.slug}/registration`}>Sign up for the ride!</ButtonLink>
       </section>
     );
   }

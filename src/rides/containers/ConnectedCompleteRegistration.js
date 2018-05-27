@@ -1,16 +1,16 @@
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 
-import { chargeUserForRide } from "rides/actions";
-import { getChapterForCurrentRide } from "chapters/selectors";
-import { getCurrentRide, getRegistrationForCurrentRideAndUser } from "rides/selectors";
+import { chargeUserForRide } from 'rides/actions';
+import { getChapterForCurrentRide } from 'chapters/selectors';
+import { getCurrentRide, getRegistrationForCurrentRideAndUser } from 'rides/selectors';
 
-import CompleteRegistrationForm from "rides/components/CompleteRegistrationForm";
+import CompleteRegistrationForm from 'rides/components/CompleteRegistrationForm';
 
 const mapStateToProps = state => ({
   ride: getCurrentRide(state),
   chapter: getChapterForCurrentRide(state),
   registration: getRegistrationForCurrentRideAndUser(state),
-  paymentProcessing: state.rides.registrationState === "processing"
+  paymentProcessing: state.rides.registrationState === 'processing'
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -26,8 +26,7 @@ const mergeProps = (stateProps, dispatchProps) => {
 
   return {
     ...stateProps,
-    handlePayment: (amount, cardDetails) =>
-      dispatchProps.chargeUserForRide(ride, user, amount, cardDetails, publicKey)
+    handlePayment: (amount, cardDetails) => dispatchProps.chargeUserForRide(ride, user, amount, cardDetails, publicKey)
   };
 };
 

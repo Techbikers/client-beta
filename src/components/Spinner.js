@@ -1,7 +1,7 @@
-import React, { PropTypes } from "react";
-import styled, { keyframes } from "styled-components";
+import React, { PropTypes } from 'react';
+import styled, { keyframes } from 'styled-components';
 
-import { green, purple } from "utils/style-variables";
+import { green, purple } from 'utils/style-variables';
 
 /**
  * Styled root component
@@ -31,7 +31,6 @@ Loader.propTypes = {
   size: PropTypes.number
 };
 
-
 /**
  * Styled spinning cube component
  */
@@ -56,8 +55,8 @@ const Cube = styled.div`
   width: 0.35em;
   height: 0.35em;
   animation: ${cubemove} 1.8s infinite ease-in-out;
-  animation-delay: ${props => props.delay || "0s"};
-  background-color: ${props => (props.light ? "#FFFFFF" : `${props.color}`)};
+  animation-delay: ${props => props.delay || '0s'};
+  background-color: ${props => (props.light ? '#FFFFFF' : `${props.color}`)};
 `;
 
 Cube.propTypes = {
@@ -80,14 +79,13 @@ const Message = styled.div`
  * @param {Boolean} [light=false]     Makes the spinner background white
  * @param {String}  [spacing="100px"] Spacing around the spinner
  */
-const Spinner = ({ size = 56, light = false, spacing = "100px", children }) => (
+const Spinner = ({ size = 56, light = false, spacing = '100px', children }) => (
   <Root spacing={spacing}>
     <Loader size={size}>
       <Cube color={green} light={light} />
       <Cube color={purple} delay="-0.9s" light={light} />
     </Loader>
-    {children &&
-      <Message>{children}</Message>}
+    {children && <Message>{children}</Message>}
   </Root>
 );
 

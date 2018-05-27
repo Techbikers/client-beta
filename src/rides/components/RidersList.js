@@ -1,9 +1,9 @@
-import React, { PropTypes } from "react";
-import styled from "styled-components";
+import React, { PropTypes } from 'react';
+import styled from 'styled-components';
 
-import { UserShape } from "users/shapes";
+import { UserShape } from 'users/shapes';
 
-import RiderCard from "users/components/RiderCard";
+import RiderCard from 'users/components/RiderCard';
 
 const List = styled.ul`
   margin: 20px 0;
@@ -12,13 +12,7 @@ const List = styled.ul`
   text-align: center;
 `;
 
-const RidersList = ({ riders }) => (
-  <List>
-    {riders.map(rider =>
-      <RiderCard key={rider.id} {...rider} />
-    )}
-  </List>
-);
+const RidersList = ({ riders }) => <List>{riders.map(rider => <RiderCard key={rider.id} {...rider} />)}</List>;
 
 RidersList.propTypes = {
   riders: PropTypes.arrayOf(UserShape)

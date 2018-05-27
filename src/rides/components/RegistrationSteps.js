@@ -1,25 +1,25 @@
-import _ from "lodash";
-import React, { Component, PropTypes } from "react";
-import styled from "styled-components";
-import { darken } from "polished";
+import _ from 'lodash';
+import React, { Component, PropTypes } from 'react';
+import styled from 'styled-components';
+import { darken } from 'polished';
 
-import { green, red, yellow } from "utils/style-variables";
+import { green, red, yellow } from 'utils/style-variables';
 
 const defaultSteps = [
   {
     number: 1,
-    text: "Register Interest",
-    state: ""
+    text: 'Register Interest',
+    state: ''
   },
   {
     number: 2,
-    text: "Invites Sent",
-    state: ""
+    text: 'Invites Sent',
+    state: ''
   },
   {
     number: 3,
-    text: "Confirm & Pay",
-    state: ""
+    text: 'Confirm & Pay',
+    state: ''
   }
 ];
 
@@ -37,11 +37,10 @@ const Step = styled.li`
   flex-basis: 0;
   color: #aaa;
 
-  color:
-    ${props => props.state === "active" ? darken(0.05, yellow) : ""}
-    ${props => props.state === "done" ? green : ""}
-    ${props => props.state === "pending" ? darken(0.05, yellow) : ""}
-    ${props => props.state === "failed" ? red : ""}
+  color: ${props => (props.state === 'active' ? darken(0.05, yellow) : '')}
+    ${props => (props.state === 'done' ? green : '')}
+    ${props => (props.state === 'pending' ? darken(0.05, yellow) : '')}
+    ${props => (props.state === 'failed' ? red : '')};
 `;
 
 Step.propTypes = {
@@ -58,31 +57,43 @@ const Icon = styled.span`
   border-radius: 50%;
   text-align: center;
 
-  ${props => props.state === "active" ? `
+  ${props =>
+    props.state === 'active'
+      ? `
     color: white;
     background: ${darken(0.05, yellow)};
     border-color: ${darken(0.05, yellow)};
-  ` : ""}
+  `
+      : ''}
 
-  ${props => props.state === "done" ? `
+  ${props =>
+    props.state === 'done'
+      ? `
     color: white;
     background: ${green};
     border-color: ${green};
-  ` : ""}
+  `
+      : ''}
 
-  ${props => props.state === "pending" ? `
+  ${props =>
+    props.state === 'pending'
+      ? `
     color: ${darken(0.05, yellow)};
     background: white;
     font-size: 48px;
     border: none;
     width: 46px;
-  ` : ""}
+  `
+      : ''}
 
-  ${props => props.state === "failed" ? `
+  ${props =>
+    props.state === 'failed'
+      ? `
     color: white;
     background: ${red};
     border-color: ${red};
-  ` : ""}
+  `
+      : ''}
 `;
 
 Icon.propTypes = {
@@ -97,12 +108,12 @@ class RegistrationSteps extends Component {
   static propTypes = {
     step: React.PropTypes.number,
     failed: React.PropTypes.bool
-  }
+  };
 
   static defaultProps = {
     step: 1,
-    state: "active"
-  }
+    state: 'active'
+  };
 
   constructor(options) {
     super(options);
@@ -124,13 +135,13 @@ class RegistrationSteps extends Component {
       if (this.props.step == step.number) {
         step.state = this.props.state;
       } else if (this.props.step > step.number) {
-        step.state = "done";
+        step.state = 'done';
       } else {
-        step.state = "";
+        step.state = '';
       }
       return step;
     });
-    this.setState({ "steps": newSteps });
+    this.setState({ steps: newSteps });
   }
 
   render() {
@@ -146,13 +157,21 @@ class RegistrationSteps extends Component {
   renderStep(step) {
     return (
       <Step state={step.state} key={step.number}>
-        {step.state == "done" ?
-          <Icon state={step.state} className="material-icons">done</Icon> :
-        step.state == "pending" ?
-          <Icon state={step.state} className="material-icons">schedule</Icon> :
-        step.state == "failed" ?
-          <Icon state={step.state} className="material-icons">clear</Icon> :
-          <Icon state={step.state}>{step.number}</Icon>}
+        {step.state == 'done' ? (
+          <Icon state={step.state} className="material-icons">
+            done
+          </Icon>
+        ) : step.state == 'pending' ? (
+          <Icon state={step.state} className="material-icons">
+            schedule
+          </Icon>
+        ) : step.state == 'failed' ? (
+          <Icon state={step.state} className="material-icons">
+            clear
+          </Icon>
+        ) : (
+          <Icon state={step.state}>{step.number}</Icon>
+        )}
         <StepDescription>{step.text}</StepDescription>
       </Step>
     );

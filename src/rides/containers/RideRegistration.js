@@ -1,23 +1,21 @@
-import React, { Component, PropTypes } from "react";
-import styled from "styled-components";
-import { connect } from "react-redux";
+import React, { Component, PropTypes } from 'react';
+import styled from 'styled-components';
+import { connect } from 'react-redux';
 
-import { fetchRideRegistrationDetails } from "rides/actions";
-import {
-  openRideRegistrationModal,
-  closeRideRegistrationModal } from "rides/actions/ui";
-import { getAuthenticatedUser } from "auth/selectors";
-import { getRegistrationForCurrentRideAndUser } from "rides/selectors";
-import { getFundraiserForCurrentRideAndUser } from "fundraisers/selectors";
-import { getCurrentRide } from "rides/selectors";
-import { getChapterForCurrentRide } from "chapters/selectors";
-import { RideShape, RegistrationShape } from "rides/shapes";
-import { UserShape } from "users/shapes";
-import { FundraiserShape } from "fundraisers/shapes";
+import { fetchRideRegistrationDetails } from 'rides/actions';
+import { openRideRegistrationModal, closeRideRegistrationModal } from 'rides/actions/ui';
+import { getAuthenticatedUser } from 'auth/selectors';
+import { getRegistrationForCurrentRideAndUser } from 'rides/selectors';
+import { getFundraiserForCurrentRideAndUser } from 'fundraisers/selectors';
+import { getCurrentRide } from 'rides/selectors';
+import { getChapterForCurrentRide } from 'chapters/selectors';
+import { RideShape, RegistrationShape } from 'rides/shapes';
+import { UserShape } from 'users/shapes';
+import { FundraiserShape } from 'fundraisers/shapes';
 
-import RideRegistrationModal from "rides/components/RideRegistrationModal";
-import RegistrationSteps from "rides/components/RegistrationSteps";
-import SetupFundraising from "fundraisers/containers/SetupFundraising";
+import RideRegistrationModal from 'rides/components/RideRegistrationModal';
+import RegistrationSteps from 'rides/components/RegistrationSteps';
+import SetupFundraising from 'fundraisers/containers/SetupFundraising';
 
 const RideRegistrationDetails = styled.div`
   padding: 0 15px;
@@ -44,12 +42,14 @@ const Header = styled.header`
   border: 3px solid #333;
   background: #333;
 
-  ${props => props.roundedCorners ? `
+  ${props =>
+    props.roundedCorners
+      ? `
     border-radius: 3px;
-  ` : `
+  `
+      : `
     border-radius: 3px 3px 0 0;
-  `}
-  text-align: center;
+  `} text-align: center;
   font-size: 18px;
   line-height: 26px;
   vertical-align: middle;
@@ -59,7 +59,6 @@ const Header = styled.header`
 Header.propTypes = {
   roundedCorners: PropTypes.boolean
 };
-
 
 const mapStateToProps = state => {
   const { rideRegistrationModal } = state.ui.rides;
@@ -117,9 +116,7 @@ class RideRegistration extends Component {
     return (
       <RegistrationContainer>
         <Header roundedCorners={true}>Now sold out</Header>
-        <span className="more-info">
-          Registration for this ride has closed as it is now sold out
-        </span>
+        <span className="more-info">Registration for this ride has closed as it is now sold out</span>
       </RegistrationContainer>
     );
   }
@@ -132,8 +129,8 @@ class RideRegistration extends Component {
           <RegistrationSteps step={2} state="pending" />
           <RideRegistrationDetails>
             <p>
-              We've received your application to join this ride. You'll hear from us soon
-              so in the meantime, why not jump on your bike and go for a ride?
+              We've received your application to join this ride. You'll hear from us soon so in the meantime, why not
+              jump on your bike and go for a ride?
             </p>
           </RideRegistrationDetails>
         </div>
@@ -146,12 +143,12 @@ class RideRegistration extends Component {
       <RegistrationPopdown>
         <Header>Invite Expired</Header>
         <div>
-          <RegistrationSteps step={3} state="failed"/>
+          <RegistrationSteps step={3} state="failed" />
           <RideRegistrationDetails>
             <p>
-              Unfortunately your invite to register for this ride has now expired. Demand for our rides
-              is always high so if you fail to accept the invite to register for the ride then we give
-              your spot to someone else on the waiting list.
+              Unfortunately your invite to register for this ride has now expired. Demand for our rides is always high
+              so if you fail to accept the invite to register for the ride then we give your spot to someone else on the
+              waiting list.
             </p>
           </RideRegistrationDetails>
         </div>
@@ -164,12 +161,11 @@ class RideRegistration extends Component {
       <RegistrationPopdown>
         <Header>No invite</Header>
         <div>
-          <RegistrationSteps step={2} state="failed"/>
+          <RegistrationSteps step={2} state="failed" />
           <RideRegistrationDetails>
             <p>
-              Due to exceptional demand we've been unable to invite you to join the ride.
-              Sorry if this is a disappointing outcome but we hope you'll apply to join
-              another Techbikers ride in the future!
+              Due to exceptional demand we've been unable to invite you to join the ride. Sorry if this is a
+              disappointing outcome but we hope you'll apply to join another Techbikers ride in the future!
             </p>
           </RideRegistrationDetails>
         </div>
@@ -184,14 +180,16 @@ class RideRegistration extends Component {
       <RegistrationPopdown>
         <Header>You've been invited to join!</Header>
         <div>
-          <RegistrationSteps step={3} state="pending"/>
+          <RegistrationSteps step={3} state="pending" />
           <RideRegistrationDetails>
             <p>
-              Good news, {user.first_name} - you've been invited to join the ride. You now need to confirm
-              and pay the registration fee before your invite expires.
+              Good news, {user.first_name} - you've been invited to join the ride. You now need to confirm and pay the
+              registration fee before your invite expires.
             </p>
           </RideRegistrationDetails>
-          <a className="btn btn-green btn-full" onClick={() => this.props.handleOpenModal()}>Complete Registration</a>
+          <a className="btn btn-green btn-full" onClick={() => this.props.handleOpenModal()}>
+            Complete Registration
+          </a>
         </div>
       </RegistrationPopdown>
     );
@@ -202,7 +200,7 @@ class RideRegistration extends Component {
       <RegistrationPopdown>
         <Header>You're signed up for the ride!</Header>
         <div>
-          <RegistrationSteps step={4}/>
+          <RegistrationSteps step={4} />
           <RideRegistrationDetails>
             <p>
               <SetupFundraising {...this.props} />
@@ -216,7 +214,9 @@ class RideRegistration extends Component {
   renderStartRegistration() {
     return (
       <RegistrationContainer>
-        <a className="btn btn-green btn-full" onClick={() => this.props.handleOpenModal()}>Sign up for the ride!</a>
+        <a className="btn btn-green btn-full" onClick={() => this.props.handleOpenModal()}>
+          Sign up for the ride!
+        </a>
       </RegistrationContainer>
     );
   }
@@ -234,13 +234,13 @@ class RideRegistration extends Component {
       const { status, expired } = registration;
 
       switch (status) {
-        case "PEN":
+        case 'PEN':
           // The logged in rider has a pending registration for this ride.
           // This means they are waiting to be accepted so they can then
           // complete their registration.
           return this.renderPendingRegistration();
 
-        case "ACC":
+        case 'ACC':
           // The current rider has been accepted onto the ride. If their invite
           // to register hasn't expired then show them a form to complete signup.
           if (expired) {
@@ -249,13 +249,13 @@ class RideRegistration extends Component {
 
           return this.renderCompleteRegistration();
 
-        case "REG":
+        case 'REG':
           // The logged in rider has already signed up for the ride and
           // is confirmed as fully registered. No need to do anything
           // but get on that bike and train!
           return this.renderCompletedRegistration();
 
-        case "REJ":
+        case 'REJ':
           return this.renderRejectedRegistration();
         default:
           return null;
@@ -276,13 +276,14 @@ class RideRegistration extends Component {
       <section>
         {this.renderContent()}
 
-        {rideRegistrationModal &&
+        {rideRegistrationModal && (
           <RideRegistrationModal
             isOpen={rideRegistrationModal}
             registrationStatus={registration && registration.status}
             hasFundraiser={!!fundraiser}
-            onRequestClose={handleCloseModal} />
-        }
+            onRequestClose={handleCloseModal}
+          />
+        )}
       </section>
     );
   }

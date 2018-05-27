@@ -1,9 +1,9 @@
-import React from "react";
-import DocumentTitle from "react-document-title";
+import React from 'react';
+import DocumentTitle from 'react-document-title';
 
-import requireAnonymity from "auth/containers/requireAnonymity";
-import SignupForm from "auth/containers/SignupForm";
-import Errors from "errors/containers/Errors";
+import requireAnonymity from 'auth/containers/requireAnonymity';
+import SignupForm from 'auth/containers/SignupForm';
+import Errors from 'errors/containers/Errors';
 
 const SignupPage = () => (
   <DocumentTitle title="Signup – Techbikers">
@@ -13,9 +13,7 @@ const SignupPage = () => (
       </header>
 
       <div className="content">
-        <p className="centerText">
-            In order to sign up for one of our rides we need you to register an account.
-        </p>
+        <p className="centerText">In order to sign up for one of our rides we need you to register an account.</p>
         <Errors errorKey="signup" />
         <SignupForm />
       </div>

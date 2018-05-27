@@ -1,6 +1,6 @@
 /* global analytics */
 
-import React, { Component, PropTypes } from "react";
+import React, { Component, PropTypes } from 'react';
 
 export default class AnalyticsLoader extends Component {
   static propTypes = {
@@ -28,7 +28,7 @@ export default class AnalyticsLoader extends Component {
 
   invoke() {
     // Create a queue, but don't obliterate an existing one!
-    const analytics = window.analytics = window.analytics || [];
+    const analytics = (window.analytics = window.analytics || []);
 
     // If the real analytics.js is already on the page return.
     if (analytics.initialize) {
@@ -38,7 +38,7 @@ export default class AnalyticsLoader extends Component {
     // If the snippet was invoked already show an error.
     if (analytics.invoked) {
       if (window.console && console.error) {
-        console.error("Segment snippet included twice.");
+        console.error('Segment snippet included twice.');
       }
       return;
     }
@@ -49,25 +49,25 @@ export default class AnalyticsLoader extends Component {
 
     // A list of the methods in Analytics.js to stub.
     analytics.methods = [
-      "trackSubmit",
-      "trackClick",
-      "trackLink",
-      "trackForm",
-      "pageview",
-      "identify",
-      "reset",
-      "group",
-      "track",
-      "ready",
-      "alias",
-      "page",
-      "once",
-      "off",
-      "on"
+      'trackSubmit',
+      'trackClick',
+      'trackLink',
+      'trackForm',
+      'pageview',
+      'identify',
+      'reset',
+      'group',
+      'track',
+      'ready',
+      'alias',
+      'page',
+      'once',
+      'off',
+      'on'
     ];
 
     // Add a version to keep track of what's in the wild.
-    analytics.SNIPPET_VERSION = "3.1.0";
+    analytics.SNIPPET_VERSION = '3.1.0';
 
     // For each of our methods, generate a queueing stub.
     for (let i = 0; i < analytics.methods.length; i++) {
@@ -89,7 +89,7 @@ export default class AnalyticsLoader extends Component {
     // for methods in Analytics.js so that you never have to wait
     // for it to load to actually record data. The `method` is
     // stored as the first argument, so we can replay the data.
-    return function () {
+    return function() {
       const args = Array.prototype.slice.call(arguments);
       args.unshift(method);
       analytics.push(args);
@@ -99,16 +99,16 @@ export default class AnalyticsLoader extends Component {
 
   loadScript() {
     const { segmentKey } = this.props;
-    const protocol = "https:" === document.location.protocol ? "https://" : "http://";
+    const protocol = 'https:' === document.location.protocol ? 'https://' : 'http://';
 
     // Create an async script element based on your key.
-    const script = document.createElement("script");
-    script.type = "text/javascript";
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
     script.async = true;
     script.src = `${protocol}cdn.segment.com/analytics.js/v1/${segmentKey}/analytics.min.js`;
 
     // Insert our script next to the first script element.
-    const first = document.getElementsByTagName("script")[0];
+    const first = document.getElementsByTagName('script')[0];
     first.parentNode.insertBefore(script, first);
   }
 

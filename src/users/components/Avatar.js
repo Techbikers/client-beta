@@ -1,4 +1,4 @@
-import React, { PropTypes } from "react";
+import React, { PropTypes } from 'react';
 
 const Avatar = ({ name, avatar, size = 80 }) => (
   <img title={name} src={`${avatar}?s=${size}`} width={size} height={size} />

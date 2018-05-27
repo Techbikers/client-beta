@@ -1,13 +1,13 @@
-import React, { Component, PropTypes } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router";
-import styled from "styled-components";
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router';
+import styled from 'styled-components';
 
-import { getRidesForCurrentUser } from "users/selectors";
-import { fetchRidesByUser } from "rides/actions";
-import { RideShape } from "rides/shapes";
+import { getRidesForCurrentUser } from 'users/selectors';
+import { fetchRidesByUser } from 'rides/actions';
+import { RideShape } from 'rides/shapes';
 
-import Spinner from "components/Spinner";
+import Spinner from 'components/Spinner';
 
 const mapStateToProps = state => ({
   rides: getRidesForCurrentUser(state)
@@ -48,9 +48,11 @@ class UserRidesList extends Component {
 
     return (
       <List>
-        {rides.map(ride =>
-          <li key={ride.id}><Link to={`/rides/${ride.id}/${ride.slug}`}>{ride.name}</Link></li>
-        )}
+        {rides.map(ride => (
+          <li key={ride.id}>
+            <Link to={`/rides/${ride.id}/${ride.slug}`}>{ride.name}</Link>
+          </li>
+        ))}
       </List>
     );
   }

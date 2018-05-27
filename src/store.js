@@ -1,12 +1,12 @@
-import { compose, createStore, applyMiddleware } from "redux";
-import persistState from "redux-localstorage";
-import { browserHistory } from "react-router";
-import { routerMiddleware } from "react-router-redux";
-import { createTracker } from "redux-segment";
-import createSagaMiddleware, { END } from "redux-saga";
+import { compose, createStore, applyMiddleware } from 'redux';
+import persistState from 'redux-localstorage';
+import { browserHistory } from 'react-router';
+import { routerMiddleware } from 'react-router-redux';
+import { createTracker } from 'redux-segment';
+import createSagaMiddleware, { END } from 'redux-saga';
 
-import ravenMiddleware from "middleware/raven";
-import rootReducer from "reducers";
+import ravenMiddleware from 'middleware/raven';
+import rootReducer from 'reducers';
 
 export default function configureStore(initialState = {}, sagas = []) {
   const trackerMiddleware = createTracker();
@@ -15,7 +15,7 @@ export default function configureStore(initialState = {}, sagas = []) {
   const authenticationSlicer = () => state => {
     const { state: authState } = state.auth;
 
-    if (authState === "authenticated") {
+    if (authState === 'authenticated') {
       return {
         auth: state.auth
       };
@@ -28,12 +28,7 @@ export default function configureStore(initialState = {}, sagas = []) {
     persistState(null, {
       slicer: authenticationSlicer
     }),
-    applyMiddleware(
-      ravenMiddleware,
-      routerMiddleware(browserHistory),
-      trackerMiddleware,
-      sagaMiddleware
-    ),
+    applyMiddleware(ravenMiddleware, routerMiddleware(browserHistory), trackerMiddleware, sagaMiddleware),
     window.devToolsExtension ? window.devToolsExtension() : f => f
   );
 
@@ -48,8 +43,8 @@ export default function configureStore(initialState = {}, sagas = []) {
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
-    module.hot.accept("./reducers", () => {
-      store.replaceReducer(require("./reducers").default);
+    module.hot.accept('./reducers', () => {
+      store.replaceReducer(require('./reducers').default);
     });
   }
 

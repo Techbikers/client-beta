@@ -1,37 +1,28 @@
-import moment from "moment";
-import { createSelector } from "reselect";
+import moment from 'moment';
+import { createSelector } from 'reselect';
 
-import { getCurrentEntity } from "app/selectors";
-import { getAuthenticatedUserId } from "auth/selectors";
+import { getCurrentEntity } from 'app/selectors';
+import { getAuthenticatedUserId } from 'auth/selectors';
 
 export const getRides = state => state.entities.ride || {};
 export const getRegistrations = state => state.entities.registration || {};
 
-export const getAllRides = createSelector(
-  [getRides],
-  rides => Object.values(rides).sort((a, b) =>
-    moment(a.startDate).isAfter(b.startDate)
-  )
+export const getAllRides = createSelector([getRides], rides =>
+  Object.values(rides).sort((a, b) => moment(a.startDate).isAfter(b.startDate))
 );
 
-export const getCurrentRide = createSelector(
-  [getRides, getCurrentEntity],
-  (rides, entity) => rides[entity.id]
+export const getCurrentRide = createSelector([getRides, getCurrentEntity], (rides, entity) => rides[entity.id]);
+
+export const getUpcomingRides = createSelector([getAllRides], rides =>
+  rides.filter(ride => moment().isSameOrBefore(ride.endDate))
 );
 
-export const getUpcomingRides = createSelector(
-  [getAllRides],
-  rides => rides.filter(ride => moment().isSameOrBefore(ride.endDate))
+export const getPastRides = createSelector([getAllRides], rides =>
+  rides.filter(ride => moment().isAfter(ride.endDate))
 );
 
-export const getPastRides = createSelector(
-  [getAllRides],
-  rides => rides.filter(ride => moment().isAfter(ride.endDate))
-);
-
-export const getRegistrationsForAllRides = createSelector(
-  [getRegistrations],
-  registrations => Object.values(registrations)
+export const getRegistrationsForAllRides = createSelector([getRegistrations], registrations =>
+  Object.values(registrations)
 );
 
 export const getRegistrationsForCurrentRide = createSelector(

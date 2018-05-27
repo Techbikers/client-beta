@@ -1,19 +1,22 @@
-import { handleActions } from "redux-actions";
+import { handleActions } from 'redux-actions';
 
-import * as ui from "rides/actions/ui";
+import * as ui from 'rides/actions/ui';
 
 const defaultState = {
   rideRegistrationModal: false
 };
 
-export default handleActions({
-  [ui.openRideRegistrationModal]: state => ({
-    ...state,
-    rideRegistrationModal: true
-  }),
+export default handleActions(
+  {
+    [ui.openRideRegistrationModal]: state => ({
+      ...state,
+      rideRegistrationModal: true
+    }),
 
-  [ui.closeRideRegistrationModal]: state => ({
-    ...state,
-    rideRegistrationModal: false
-  })
-}, defaultState);
+    [ui.closeRideRegistrationModal]: state => ({
+      ...state,
+      rideRegistrationModal: false
+    })
+  },
+  defaultState
+);

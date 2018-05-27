@@ -1,14 +1,14 @@
-import React, { PropTypes, Component } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router";
-import { FormattedNumber } from "react-intl";
-import styled from "styled-components";
+import React, { PropTypes, Component } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router';
+import { FormattedNumber } from 'react-intl';
+import styled from 'styled-components';
 
-import { fetchUserById } from "users/actions";
-import { UserShape } from "users/shapes";
-import { FundraiserShape } from "fundraisers/shapes";
+import { fetchUserById } from 'users/actions';
+import { UserShape } from 'users/shapes';
+import { FundraiserShape } from 'fundraisers/shapes';
 
-import Avatar from "users/components/Avatar";
+import Avatar from 'users/components/Avatar';
 
 const mapStateToProps = (state, ownProps) => {
   const { user } = ownProps;
@@ -38,23 +38,35 @@ const FundraiserPosition = styled.span`
   background: url("/static/img/place_other.png") center bottom;
   padding-top: 10px;
 
-  ${props => props.position <= 3 ? `
+  ${props =>
+    props.position <= 3
+      ? `
     height: 61px;
     padding-top: 28px;
     margin-top: 0;
     -webkit-background-size: 45px 61px;
     -moz-background-size: 45px 61px;
     background-size: 45px 61px;
-  ` : ""}
-  ${props => props.position === 1 ? `
+  `
+      : ''}
+  ${props =>
+    props.position === 1
+      ? `
     background-image: url("/static/img/place_first_x2.png");
-  ` : ""}
-  ${props => props.position === 2 ? `
+  `
+      : ''}
+  ${props =>
+    props.position === 2
+      ? `
     background-image: url("/static/img/place_second_x2.png");
-  ` : ""}
-  ${props => props.position === 3 ? `
+  `
+      : ''}
+  ${props =>
+    props.position === 3
+      ? `
     background-image: url("/static/img/place_third_x2.png");
-  ` : ""}
+  `
+      : ''}
 `;
 
 FundraiserPosition.propTypes = {
@@ -110,34 +122,20 @@ class Fundraiser extends Component {
   }
 
   render() {
-    const {
-      currency,
-      totalRaised,
-      pageUrl,
-      position,
-      userObject: user
-    } = this.props;
+    const { currency, totalRaised, pageUrl, position, userObject: user } = this.props;
 
     return (
       <FundraiserContainer>
-        <FundraiserPosition position={position}>
-          {position || ""}
-        </FundraiserPosition>
+        <FundraiserPosition position={position}>{position || ''}</FundraiserPosition>
 
         <RiderAvatar>
           <Avatar {...user} />
         </RiderAvatar>
 
         <FundraiserDetails>
-          <FundraiserHeader>{user ? user.name : "loading..."}</FundraiserHeader>
+          <FundraiserHeader>{user ? user.name : 'loading...'}</FundraiserHeader>
           <p>
-            <FormattedNumber
-              style="currency"
-              currency={currency}
-              value={totalRaised}
-            />
-            {" "}
-            <span>raised so far</span>
+            <FormattedNumber style="currency" currency={currency} value={totalRaised} /> <span>raised so far</span>
           </p>
         </FundraiserDetails>
 

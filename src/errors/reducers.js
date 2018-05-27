@@ -1,23 +1,22 @@
-import { handleActions } from "redux-actions";
-import { LOCATION_CHANGE } from "react-router-redux";
+import { handleActions } from 'redux-actions';
+import { LOCATION_CHANGE } from 'react-router-redux';
 
-import {
-  addError,
-  clearError,
-  clearAllErrors
-} from "errors/actions";
+import { addError, clearError, clearAllErrors } from 'errors/actions';
 
-export default handleActions({
-  [addError]: (state, { payload }) => ({
-    ...state,
-    [payload.key]: payload.error
-  }),
+export default handleActions(
+  {
+    [addError]: (state, { payload }) => ({
+      ...state,
+      [payload.key]: payload.error
+    }),
 
-  [clearError]: (state, { payload }) => ({
-    ...state,
-    [payload.key]: null
-  }),
+    [clearError]: (state, { payload }) => ({
+      ...state,
+      [payload.key]: null
+    }),
 
-  [clearAllErrors]: () => ({}),
-  [LOCATION_CHANGE]: () => ({})
-}, {});
+    [clearAllErrors]: () => ({}),
+    [LOCATION_CHANGE]: () => ({})
+  },
+  {}
+);

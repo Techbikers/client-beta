@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { grey5 } from "utils/style-variables";
+import { grey5 } from 'utils/style-variables';
 
 const SubTitle = styled.h2`
   margin-top: 0;

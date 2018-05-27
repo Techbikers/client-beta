@@ -1,10 +1,6 @@
-import { combineReducers } from "redux";
+import { combineReducers } from 'redux';
 
-import {
-  CREATE_NOTIFICATION,
-  DISMISS_NOTIFICATION,
-  UPDATE_PROGRESS_NOTIFICATION
-} from "notifications/actions";
+import { CREATE_NOTIFICATION, DISMISS_NOTIFICATION, UPDATE_PROGRESS_NOTIFICATION } from 'notifications/actions';
 
 export default combineReducers({
   queue,
@@ -39,7 +35,7 @@ export function byId(state = {}, { type, payload = {} }) {
     case UPDATE_PROGRESS_NOTIFICATION:
       progress = payload.progress;
 
-      if (typeof state[id] === "undefined") {
+      if (typeof state[id] === 'undefined') {
         return state;
       }
       return {
@@ -56,15 +52,15 @@ export function byId(state = {}, { type, payload = {} }) {
 
 function createNotification({ type, id, text, initialProgress }) {
   switch (type) {
-    case "progress":
+    case 'progress':
       return {
         id,
         type,
         text,
         progress: initialProgress
       };
-    case "text":
-    case "error":
+    case 'text':
+    case 'error':
       return {
         id,
         type,

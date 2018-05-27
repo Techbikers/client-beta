@@ -1,15 +1,15 @@
-import React, { Component, PropTypes } from "react";
-import { connect } from "react-redux";
-import styled from "styled-components";
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import styled from 'styled-components';
 
-import { RideShape } from "rides/shapes";
-import { UserShape } from "users/shapes";
-import { getCurrentRide } from "rides/selectors";
-import { getUsersOnCurrentRide } from "users/selectors";
-import { fetchUsersByRide } from "users/actions";
+import { RideShape } from 'rides/shapes';
+import { UserShape } from 'users/shapes';
+import { getCurrentRide } from 'rides/selectors';
+import { getUsersOnCurrentRide } from 'users/selectors';
+import { fetchUsersByRide } from 'users/actions';
 
-import Spinner from "components/Spinner";
-import RidersList from "rides/components/RidersList";
+import Spinner from 'components/Spinner';
+import RidersList from 'rides/components/RidersList';
 
 const RidersWrapper = styled.section`
   border-top: 1px solid #e2e2e2;
@@ -44,11 +44,7 @@ class ConnectedRidersList extends Component {
       <RidersWrapper>
         <div className="content">
           <h2>The Riders</h2>
-          {riders.length === 0 ?
-            <Spinner spacing="20px" />
-            :
-            <RidersList riders={riders} />
-          }
+          {riders.length === 0 ? <Spinner spacing="20px" /> : <RidersList riders={riders} />}
         </div>
       </RidersWrapper>
     );

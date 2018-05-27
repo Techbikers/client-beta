@@ -1,15 +1,15 @@
-import React, { PropTypes } from "react";
-import { FormattedNumber } from "react-intl";
-import styled from "styled-components";
+import React, { PropTypes } from 'react';
+import { FormattedNumber } from 'react-intl';
+import styled from 'styled-components';
 
-import { RideShape, RegistrationShape } from "rides/shapes";
-import { UserShape } from "users/shapes";
-import { ChapterShape } from "chapters/shapes";
+import { RideShape, RegistrationShape } from 'rides/shapes';
+import { UserShape } from 'users/shapes';
+import { ChapterShape } from 'chapters/shapes';
 
-import Errors from "errors/containers/Errors";
-import PaymentForm from "components/PaymentForm";
-import Timestamp from "components/Timestamp";
-import RegistrationSteps from "rides/components/RegistrationSteps";
+import Errors from 'errors/containers/Errors';
+import PaymentForm from 'components/PaymentForm';
+import Timestamp from 'components/Timestamp';
+import RegistrationSteps from 'rides/components/RegistrationSteps';
 
 const Description = styled.div`
   text-align: center;
@@ -23,14 +23,21 @@ const CompleteRegistrationForm = ({ registration, ride, paymentProcessing, handl
       <Description>
         <h3>Great news - we'd love to have you as part of TechBikers ride!</h3>
 
-        {registration.signupExpires &&
+        {registration.signupExpires && (
           <p>
-            <b>You have until <Timestamp format="D MMM" value={registration.signupExpires} /> to
-            register.</b> After this you may lose your spot to someone else.</p>}
+            <b>
+              You have until <Timestamp format="D MMM" value={registration.signupExpires} /> to register.
+            </b>{' '}
+            After this you may lose your spot to someone else.
+          </p>
+        )}
 
         <p>
-          <b>The ride costs about <FormattedNumber style="currency" currency={ride.currency} value={ride.fullCost} /> per rider.
-            We're asking for a minimum contribution of <FormattedNumber style="currency" currency={ride.currency} value={ride.price} />.</b>
+          <b>
+            The ride costs about <FormattedNumber style="currency" currency={ride.currency} value={ride.fullCost} /> per
+            rider. We're asking for a minimum contribution of{' '}
+            <FormattedNumber style="currency" currency={ride.currency} value={ride.price} />.
+          </b>
           If you are able, we welcome you to pay more. This means more sponsor money goes directly to Room to Read!
         </p>
 
@@ -43,7 +50,8 @@ const CompleteRegistrationForm = ({ registration, ride, paymentProcessing, handl
         onSubmit={({ amount, number, cvc, exp, name }) => handlePayment(amount, { number, cvc, exp, name })}
         customAmount
         minAmount={ride.price}
-        currency={ride.currency}/>
+        currency={ride.currency}
+      />
     </div>
   </div>
 );

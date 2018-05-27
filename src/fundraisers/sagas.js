@@ -1,23 +1,23 @@
-import { takeEvery, call, fork } from "redux-saga/effects";
-import { schema } from "normalizr";
+import { takeEvery, call, fork } from 'redux-saga/effects';
+import { schema } from 'normalizr';
 
-import { callApi } from "utils/api";
-import * as actions from "fundraisers/actions";
+import { callApi } from 'utils/api';
+import * as actions from 'fundraisers/actions';
 
-export const FundraiserSchema = new schema.Entity("fundraiser");
+export const FundraiserSchema = new schema.Entity('fundraiser');
 
 /**
  * Fetch all fundraisers
  */
 export function* fetchActiveFundraisers() {
-  return yield call(callApi, "/fundraisers/", {}, [FundraiserSchema]);
+  return yield call(callApi, '/fundraisers/', {}, [FundraiserSchema]);
 }
 
 export function* createFundraiser({ payload }) {
   const { rideId, userId } = payload;
   const fetchOptions = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       ride: rideId,
       user: userId

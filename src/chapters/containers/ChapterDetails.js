@@ -1,14 +1,14 @@
-import React, { Component, PropTypes } from "react";
-import { connect } from "react-redux";
-import DocumentTitle from "react-document-title";
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import DocumentTitle from 'react-document-title';
 
-import { ChapterShape } from "chapters/shapes";
-import { getCurrentChapter } from "chapters/selectors";
-import { fetchChapterByName } from "chapters/actions";
-import { fetchAllRides } from "rides/actions";
+import { ChapterShape } from 'chapters/shapes';
+import { getCurrentChapter } from 'chapters/selectors';
+import { fetchChapterByName } from 'chapters/actions';
+import { fetchAllRides } from 'rides/actions';
 
-import Spinner from "components/Spinner";
-import ConnectedRideCard from "rides/containers/ConnectedRideCard";
+import Spinner from 'components/Spinner';
+import ConnectedRideCard from 'rides/containers/ConnectedRideCard';
 
 const mapStateToProps = state => ({
   chapter: getCurrentChapter(state)

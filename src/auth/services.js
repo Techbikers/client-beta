@@ -1,6 +1,6 @@
-import auth0 from "auth0-js";
+import auth0 from 'auth0-js';
 
-import { AUTH0_CLIENT_ID, AUTH0_DOMAIN } from "config";
+import { AUTH0_CLIENT_ID, AUTH0_DOMAIN } from 'config';
 
 class AuthService {
   constructor() {
@@ -8,8 +8,8 @@ class AuthService {
     this.auth0 = new auth0.WebAuth({
       clientID: AUTH0_CLIENT_ID,
       domain: AUTH0_DOMAIN,
-      responseType: "token id_token",
-      scope: "openid email",
+      responseType: 'token id_token',
+      scope: 'openid email',
       redirectUri: `${window.location.origin}/auth/complete`
     });
   }
@@ -19,27 +19,25 @@ class AuthService {
    * @param {string} username
    * @param {string} password
    */
-  login = (username, password) => new Promise(resolve =>
-    this.auth0.client.login({
-      realm: "Username-Password-Authentication",
-      username,
-      password
-    }, (error, response) =>
-      resolve({ error, response })
-    ));
+  login = (username, password) =>
+    new Promise(resolve =>
+      this.auth0.client.login(
+        {
+          realm: 'Username-Password-Authentication',
+          username,
+          password
+        },
+        (error, response) => resolve({ error, response })
+      )
+    );
 
   /**
    * Log the user in using a specific connection (social login)
    * @param {string} connection The authentication connection to use
    */
-  authorize = connection =>
-    this.auth0.authorize({ connection });
+  authorize = connection => this.auth0.authorize({ connection });
 
-  parseHase = hash => new Promise(resolve =>
-    this.auth0.parseHash(hash, (error, result) =>
-      resolve({ error, result })
-    )
-  );
+  parseHase = hash => new Promise(resolve => this.auth0.parseHash(hash, (error, result) => resolve({ error, result })));
 
   /**
    * Create a new Username-Password user
@@ -47,24 +45,25 @@ class AuthService {
    * @param {string} password      Password for the new user
    * @param {Object} [metadata={}] Additional metadata for that user
    */
-  signup = (email, password, metadata = {}) => new Promise(resolve =>
-    this.auth0.signup({
-      connection: "Username-Password-Authentication",
-      email,
-      password,
-      user_metadata: metadata // eslint-disable-line camelcase
-    }, (error, response) =>
-      resolve({ error, response })
-    ));
+  signup = (email, password, metadata = {}) =>
+    new Promise(resolve =>
+      this.auth0.signup(
+        {
+          connection: 'Username-Password-Authentication',
+          email,
+          password,
+          user_metadata: metadata // eslint-disable-line camelcase
+        },
+        (error, response) => resolve({ error, response })
+      )
+    );
 
   /**
    * Get user information from Auth0 using the access token
    * @param {string} accessToken - Access token for an authenticated user
    */
-  userInfo = accessToken => new Promise(resolve =>
-    this.auth0.client.userInfo(accessToken, (error, profile) =>
-      resolve({ error, profile })
-    ));
+  userInfo = accessToken =>
+    new Promise(resolve => this.auth0.client.userInfo(accessToken, (error, profile) => resolve({ error, profile })));
 
   /**
    * Change the users password (or send a password reset email if no new
@@ -72,15 +71,17 @@ class AuthService {
    * @param  {string} email    - Email address of the user
    * @param  {string} [password] - New password for the user
    */
-  changePassword = (email, password) => new Promise(resolve =>
-    this.auth0.changePassword({
-      connection: "Username-Password-Authentication",
-      email,
-      password
-    }, (error, response) =>
-      resolve({ error, response })
-    ));
-
+  changePassword = (email, password) =>
+    new Promise(resolve =>
+      this.auth0.changePassword(
+        {
+          connection: 'Username-Password-Authentication',
+          email,
+          password
+        },
+        (error, response) => resolve({ error, response })
+      )
+    );
 }
 
 export default new AuthService();

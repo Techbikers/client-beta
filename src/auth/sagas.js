@@ -1,32 +1,28 @@
-import moment from "moment";
-import { takeEvery, fork, put, select, call, take, race } from "redux-saga/effects";
-import { replace } from "react-router-redux";
+import moment from 'moment';
+import { takeEvery, fork, put, select, call, take, race } from 'redux-saga/effects';
+import { replace } from 'react-router-redux';
 
-import { INIT } from "app/actions";
-import { addError } from "errors/actions";
-import { getLocation } from "app/selectors";
-import authService from "auth/services";
-import {
-  createTextNotification,
-  createErrorNotification
-} from "notifications/actions";
-import { fetchUserById } from "users/actions";
-import {
-  getAuthState,
-  getAuthenticatedUserId,
-  getAuthCallback
-} from "auth/selectors";
-import * as actions from "auth/actions";
-import * as ui from "auth/actions/ui";
+import { INIT } from 'app/actions';
+import { addError } from 'errors/actions';
+import { getLocation } from 'app/selectors';
+import authService from 'auth/services';
+import { createTextNotification, createErrorNotification } from 'notifications/actions';
+import { fetchUserById } from 'users/actions';
+import { getAuthState, getAuthenticatedUserId, getAuthCallback } from 'auth/selectors';
+import * as actions from 'auth/actions';
+import * as ui from 'auth/actions/ui';
 
 /**
  * Runs on app initialisation to check the authentication state and
  * fetch any required user information (profile, refreshed token etc)
  */
 export function* checkAuthState() {
-  const { state, claims: { exp } } = yield select(getAuthState);
+  const {
+    state,
+    claims: { exp }
+  } = yield select(getAuthState);
 
-  if (state === "authenticated") {
+  if (state === 'authenticated') {
     // Check that the token is still valid
     if (moment().isAfter(exp * 1000)) {
       // Log the user out
@@ -49,10 +45,7 @@ export function* authenticateUser({ payload }) {
 
   if (error) {
     // Authentication failed
-    yield [
-      put(addError("authentication", error.code, error.description)),
-      put(actions.authFailure())
-    ];
+    yield [put(addError('authentication', error.code, error.description)), put(actions.authFailure())];
   } else {
     // Authenticated successful, log the user in on the client
     yield put(actions.authSuccess(response));
@@ -87,7 +80,7 @@ export function* authenticateSocialUser({ payload }) {
 function* authCallback({ payload }) {
   // If there is no hash then redirect as they have probably got here by mistake
   if (!payload) {
-    yield put(replace("/"));
+    yield put(replace('/'));
     return;
   }
 
@@ -106,15 +99,12 @@ function* authCallback({ payload }) {
     const { returnTo, action } = yield select(getAuthCallback);
 
     // Dispatch any callback actions
-    if (action && typeof action.type === "string") {
+    if (action && typeof action.type === 'string') {
       yield put(action);
     }
 
     // Now redirect the user and clear the store of callback info
-    yield [
-      put(replace(returnTo || "/")),
-      put(actions.clearAuthCallback())
-    ];
+    yield [put(replace(returnTo || '/')), put(actions.clearAuthCallback())];
   }
 }
 
@@ -145,12 +135,12 @@ export function* changePassword({ payload }) {
  */
 export function* resetPassword({ payload }) {
   const [{ error }] = [
-    yield put(ui.updatePasswordResetStatus("loading")),
+    yield put(ui.updatePasswordResetStatus('loading')),
     yield call(authService.changePassword, payload)
   ];
 
   if (!error) {
-    yield put(ui.updatePasswordResetStatus("emailed"));
+    yield put(ui.updatePasswordResetStatus('emailed'));
   }
 }
 
@@ -169,17 +159,13 @@ export function* createUserAndAuthenticate({ payload }) {
   const { email, password, password_confirm, ...metadata } = payload; // eslint-disable-line camelcase, no-unused-vars
 
   // Attempt to create the user first
-  const { error } = yield authService.signup(
-    email,
-    password,
-    { ...metadata, name: `${metadata.first_name} ${metadata.last_name}` }
-  );
+  const { error } = yield authService.signup(email, password, {
+    ...metadata,
+    name: `${metadata.first_name} ${metadata.last_name}`
+  });
 
   if (error) {
-    yield [
-      put(addError("signup", error.code, error.description)),
-      put(actions.authFailure())
-    ];
+    yield [put(addError('signup', error.code, error.description)), put(actions.authFailure())];
     return false;
   }
 
@@ -193,16 +179,16 @@ export function* createUserAndAuthenticate({ payload }) {
   });
 
   if (success) {
-    yield put(createTextNotification("Welcome to Techbikers!", 5000));
+    yield put(createTextNotification('Welcome to Techbikers!', 5000));
     return true;
   } else {
-    yield put(createErrorNotification("Ooops, something went wrong"));
+    yield put(createErrorNotification('Ooops, something went wrong'));
     return false;
   }
 }
 
 export function* logout() {
-  yield put(createTextNotification("You have successfully logged out!"));
+  yield put(createTextNotification('You have successfully logged out!'));
 }
 
 export default function* root() {

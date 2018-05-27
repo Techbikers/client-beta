@@ -1,14 +1,14 @@
-import React, { Component, PropTypes } from "react";
-import { connect } from "react-redux";
-import { replace } from "react-router-redux";
-import { locationShape } from "react-router";
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { replace } from 'react-router-redux';
+import { locationShape } from 'react-router';
 
-import { getLocation } from "app/selectors";
+import { getLocation } from 'app/selectors';
 
 const wrapComponent = WrappedComponent => {
   const mapStateToProps = state => ({
     location: getLocation(state),
-    isAuthenticated: state.auth.state === "authenticated"
+    isAuthenticated: state.auth.state === 'authenticated'
   });
 
   const mapDispatchToProps = {
@@ -36,12 +36,12 @@ const wrapComponent = WrappedComponent => {
 
     checkAuth({ isAuthenticated, location }) {
       if (isAuthenticated) {
-        this.props.replace(location.state && location.state.returnTo || "/");
+        this.props.replace((location.state && location.state.returnTo) || '/');
       }
     }
 
     render() {
-      return <WrappedComponent {...this.props}/>;
+      return <WrappedComponent {...this.props} />;
     }
   }
 

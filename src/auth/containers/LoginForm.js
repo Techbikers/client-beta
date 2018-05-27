@@ -1,24 +1,24 @@
-import React, { Component, PropTypes } from "react";
-import { connect } from "react-redux";
-import forms, { Form } from "newforms";
-import { Link, locationShape } from "react-router";
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import forms, { Form } from 'newforms';
+import { Link, locationShape } from 'react-router';
 
-import { getLocation } from "app/selectors";
-import { authenticateUser } from "auth/actions";
+import { getLocation } from 'app/selectors';
+import { authenticateUser } from 'auth/actions';
 
-import Button from "components/Button";
-import FormField from "components/FormField";
+import Button from 'components/Button';
+import FormField from 'components/FormField';
 
 /* eslint-disable babel/new-cap */
 const LoginFormSchema = Form.extend({
   email: forms.EmailField(),
-  password: forms.CharField({ widget: forms.PasswordInput }),
+  password: forms.CharField({ widget: forms.PasswordInput })
 });
 /* eslint-enable */
 
 const mapStateToProps = state => ({
   location: getLocation(state),
-  loading: state.auth.state === "authenticating"
+  loading: state.auth.state === 'authenticating'
 });
 
 const mapDispatchToProps = {
@@ -39,7 +39,7 @@ class LoginForm extends Component {
     };
   }
 
-  onFormChange = () => this.forceUpdate()
+  onFormChange = () => this.forceUpdate();
 
   handleLogin = event => {
     event.preventDefault();
@@ -50,7 +50,7 @@ class LoginForm extends Component {
       const { email, password } = form.cleanedData;
       this.props.login(email, password);
     }
-  }
+  };
 
   render() {
     const { loading, location } = this.props;
@@ -59,18 +59,21 @@ class LoginForm extends Component {
     return (
       <form id="loginform" role="form" onSubmit={this.handleLogin}>
         <div className="row">
-          {Object.keys(fields).map(key =>
+          {Object.keys(fields).map(key => (
             <FormField key={fields[key].htmlName} field={fields[key]} className="span2 offset2" />
-          )}
+          ))}
         </div>
         <div className="row centerText">
           <div className="span6">
-            <Button loading={loading} type="submit">Login</Button>
+            <Button loading={loading} type="submit">
+              Login
+            </Button>
           </div>
           <div className="span6">
-            Don"t have an account yet? <Link to={{ pathname: "/signup", state: { ...location.state } }}>Create one!</Link>
-            <br/>
-            <Link to={{ pathname: "/password/reset", state: { ...location.state } }}>Forgotten your password?</Link>
+            Don"t have an account yet?{' '}
+            <Link to={{ pathname: '/signup', state: { ...location.state } }}>Create one!</Link>
+            <br />
+            <Link to={{ pathname: '/password/reset', state: { ...location.state } }}>Forgotten your password?</Link>
           </div>
         </div>
       </form>

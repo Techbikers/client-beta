@@ -1,13 +1,13 @@
-import React, { PropTypes, Component } from "react";
-import { connect } from "react-redux";
-import DocumentTitle from "react-document-title";
-import styled from "styled-components";
+import React, { PropTypes, Component } from 'react';
+import { connect } from 'react-redux';
+import DocumentTitle from 'react-document-title';
+import styled from 'styled-components';
 
-import { getLeaderboard } from "fundraisers/selectors";
-import { fetchActiveFundraisers } from "fundraisers/actions";
-import { FundraiserShape } from "fundraisers/shapes";
+import { getLeaderboard } from 'fundraisers/selectors';
+import { fetchActiveFundraisers } from 'fundraisers/actions';
+import { FundraiserShape } from 'fundraisers/shapes';
 
-import Fundraiser from "fundraisers/containers/Fundraiser";
+import Fundraiser from 'fundraisers/containers/Fundraiser';
 
 const mapStateToProps = state => ({
   fundraisers: getLeaderboard(state)

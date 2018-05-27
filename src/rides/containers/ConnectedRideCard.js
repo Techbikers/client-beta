@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-import { RideShape } from "rides/shapes";
+import { RideShape } from 'rides/shapes';
 
-import RideCard from "rides/components/RideCard";
+import RideCard from 'rides/components/RideCard';
 
 const mapStateToProps = (state, props) => {
   const ride = state.entities.ride && state.entities.ride[props.rideId];

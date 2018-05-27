@@ -1,13 +1,11 @@
-import React, { PropTypes } from "react";
-import { connect } from "react-redux";
-import styled from "styled-components";
+import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
+import styled from 'styled-components';
 
-import { NotificationShape } from "notifications/shapes";
+import { NotificationShape } from 'notifications/shapes';
 
-import ProgressNotification
-  from "notifications/components/ProgressNotification";
-import TextNotification
-  from "notifications/components/TextNotification";
+import ProgressNotification from 'notifications/components/ProgressNotification';
+import TextNotification from 'notifications/components/TextNotification';
 
 const Root = styled.div`
   position: fixed;
@@ -33,10 +31,10 @@ const mapStateToProps = state => {
 
 const NotificationRenderer = ({ notification }) => {
   switch (notification.type) {
-    case "progress":
+    case 'progress':
       return <ProgressNotification {...notification} />;
-    case "text":
-    case "error":
+    case 'text':
+    case 'error':
       return <TextNotification {...notification} />;
     default:
       throw new Error(`Unknown notification type: ${notification.type}`);
@@ -48,10 +46,7 @@ NotificationRenderer.propTypes = {
 };
 
 const NotificationArea = ({ currentNotification }) => (
-  <Root>
-    {currentNotification &&
-      <NotificationRenderer notification={currentNotification} />}
-  </Root>
+  <Root>{currentNotification && <NotificationRenderer notification={currentNotification} />}</Root>
 );
 
 NotificationArea.propTypes = {

@@ -1,12 +1,12 @@
-import React, { Component, PropTypes } from "react";
-import { connect } from "react-redux";
-import { replace } from "react-router-redux";
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { replace } from 'react-router-redux';
 
-import { getCurrentPathname } from "app/selectors";
+import { getCurrentPathname } from 'app/selectors';
 
 const wrapComponent = (WrappedComponent, overridePredicate) => {
   const mapStateToProps = (state, ownProps) => {
-    const isAuthenticated = state.auth.state === "authenticated";
+    const isAuthenticated = state.auth.state === 'authenticated';
     const isOverridden = overridePredicate(state, ownProps);
     const pathname = getCurrentPathname(state);
 
@@ -14,10 +14,13 @@ const wrapComponent = (WrappedComponent, overridePredicate) => {
   };
 
   const mapDispatchToProps = dispatch => ({
-    redirectToLogin: returnTo => dispatch(replace({
-      pathname: "/login",
-      state: { modal: true, returnTo }
-    }))
+    redirectToLogin: returnTo =>
+      dispatch(
+        replace({
+          pathname: '/login',
+          state: { modal: true, returnTo }
+        })
+      )
   });
 
   class AuthenticatedComponent extends Component {
@@ -38,7 +41,7 @@ const wrapComponent = (WrappedComponent, overridePredicate) => {
 
     checkAuth(props) {
       const { pathname, redirectToLogin } = props;
-      if (!this.allowedAccess(props) && pathname !== "/login") {
+      if (!this.allowedAccess(props) && pathname !== '/login') {
         redirectToLogin(pathname);
       }
     }
@@ -51,7 +54,7 @@ const wrapComponent = (WrappedComponent, overridePredicate) => {
     render() {
       const { isAuthenticated, isOverridden, ...props } = this.props; // eslint-disable-line no-unused-vars
 
-      return this.allowedAccess(this.props) ? <WrappedComponent {...props}/> : null;
+      return this.allowedAccess(this.props) ? <WrappedComponent {...props} /> : null;
     }
   }
 

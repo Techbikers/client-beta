@@ -1,8 +1,7 @@
-import { merge } from "lodash";
-import { combineReducers } from "redux";
+import { merge } from 'lodash';
+import { combineReducers } from 'redux';
 
-import {
-  UPDATE_META_INFO } from "app/actions";
+import { UPDATE_META_INFO } from 'app/actions';
 
 export default combineReducers({
   meta

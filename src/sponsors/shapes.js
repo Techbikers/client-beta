@@ -1,4 +1,4 @@
-import { PropTypes } from "react";
+import { PropTypes } from 'react';
 
 export const RideSponsor = PropTypes.shape({
   ride: PropTypes.number.isRequired,

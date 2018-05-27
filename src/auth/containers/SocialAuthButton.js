@@ -1,19 +1,17 @@
-import React, { PropTypes } from "react";
-import { connect } from "react-redux";
+import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
 
-import { authenticateSocialUser } from "auth/actions";
+import { authenticateSocialUser } from 'auth/actions';
 
 const mapDispatchToProps = (dispatch, props) => {
   const { connection, callbackReturnTo, callbackAction } = props;
 
   return {
-    handleSocialAuth: () => dispatch(
-      authenticateSocialUser(connection, callbackReturnTo, callbackAction)
-    )
+    handleSocialAuth: () => dispatch(authenticateSocialUser(connection, callbackReturnTo, callbackAction))
   };
 };
 
-const SocialAuthButton = ({ connection, children, className = "btn-blue", handleSocialAuth }) => (
+const SocialAuthButton = ({ connection, children, className = 'btn-blue', handleSocialAuth }) => (
   <button className={`btn ${className}`} type="submit" onClick={() => handleSocialAuth()}>
     {children || `Login with ${connection}`}
   </button>
@@ -28,7 +26,7 @@ SocialAuthButton.propTypes = {
   }),
   children: PropTypes.node,
   className: PropTypes.string,
-  handleSocialAuth: PropTypes.func.isRequired,
+  handleSocialAuth: PropTypes.func.isRequired
 };
 
 export default connect(null, mapDispatchToProps)(SocialAuthButton);
